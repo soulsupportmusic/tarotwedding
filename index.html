@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wedding Tarot - Das inspirierende Kartenset für eure Hochzeitsplanung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root { --fg:#2a2a2a; --muted:#6b6b6b; --bg:#f5f3f0; --bg2:#ede5df; --ink:#2a2a2a; --accent:#8b6b47; --card:#fafaf8; }
+
+    body { font-family: 'Lora', 'Cormorant Garamond', serif; background: var(--bg); color: var(--fg); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; font-weight: 700; letter-spacing: .5px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,.9); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid rgba(0,0,0,.08); }
+    .nav-content { max-width: 1100px; margin: 0 auto; padding: 0 22px; height: 56px; display:flex; justify-content: space-between; align-items:center; }
+    .logo { font-size: 18px; font-weight: 700; letter-spacing: 1px; color: var(--ink); font-family: 'Cormorant Garamond', serif; }
+    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links a { color: var(--ink); text-decoration:none; font-size:14px; font-weight:500; opacity:.75; transition: opacity .3s; }
+    .nav-links a:hover { opacity:1; }
+
+    /* HERO */
+    .hero { height: 100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 0 20px; background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); position: relative; overflow:hidden; margin-top:56px; z-index:0; isolation:isolate; }
+    .hero-bg { position:absolute; inset:0; background: radial-gradient(circle at 20% 50%, rgba(230,180,140,.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(180,160,130,.08) 0%, transparent 50%); pointer-events:none; }
+
+    /* Three smaller hero cards (kept) */
+    .hero-card-visual, .hero-card-visual-2, .hero-card-visual-3 { position:absolute; width:200px; height:300px; background-size:cover; background-position:center; border-radius:14px; border:2px solid var(--ink); opacity:1; pointer-events:none; z-index:-1; }
+    .hero-card-visual   { transform: rotate(6deg);  background-image:url('images/hero-card.jpg'); right:3%; }
+    .hero-card-visual-2 { transform: rotate(2deg);  background-image:url('images/hero-card-2.jpg'); right:5%; }
+    .hero-card-visual-3 { transform: rotate(-2deg); background-image:url('images/hero-card-3.jpg'); right:7%; }
+
+    .hero-content { position:relative; z-index:1; max-width:720px; }
+    h1 { font-size:72px; font-weight:700; letter-spacing:-2px; margin-bottom:8px; line-height:1.1; color:var(--ink); }
+    .hero-subtitle { font-size:28px; font-weight:400; margin-bottom:40px; color:var(--muted); letter-spacing:-.3px; }
+    .cta-buttons { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+    .cta-button { display:inline-block; background: var(--ink); color:#fff; padding:14px 40px; border-radius:8px; text-decoration:none; font-size:17px; font-weight:600; transition: all .3s; box-shadow:0 4px 12px rgba(0,0,0,.15); font-family:'Lora', serif; }
+    .cta-button:hover { background:#1a1a1a; box-shadow:0 6px 20px rgba(0,0,0,.25); transform: translateY(-2px); }
+    .cta-button.secondary { background:transparent; border:2px solid var(--ink); color:var(--ink); box-shadow:none; }
+    .cta-button.secondary:hover { background:var(--ink); color:#fff; }
+
+    /* INTRO (short, WIIFM) */
+    .intro { max-width: 980px; margin: 80px auto 40px; padding: 0 22px; text-align:center; }
+    .intro-title { font-size:44px; letter-spacing:-1px; margin-bottom:16px; color:var(--ink); }
+    .intro-text { font-size:18px; line-height:1.8; color:var(--muted); margin-bottom:12px; }
+
+    /* CARDS */
+    .cards-section { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); padding:80px 20px; }
+    .cards-container { max-width:1200px; margin:0 auto; }
+    .section-title { font-size:44px; text-align:center; margin-bottom:14px; letter-spacing:-1px; color:var(--ink); }
+    .section-subtitle { text-align:center; font-size:18px; color:var(--muted); margin-bottom:48px; max-width:700px; margin-left:auto; margin-right:auto; }
+
+    .cards-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:24px; }
+    .card-wrapper { position:relative; width:100%; aspect-ratio: 2.5/3.85; cursor:pointer; perspective:1000px; transition: transform .3s ease; will-change: transform; }
+    .card-wrapper:hover { transform: translateY(-8px); }
+    .card-inner { position:relative; width:100%; height:100%; transition: transform .8s ease-in-out; transform-style: preserve-3d; will-change: transform; }
+    .card-wrapper:hover .card-inner, .card-wrapper:focus-within .card-inner, .card-wrapper:active .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { position:absolute; inset:0; border-radius:12px; border:2px solid var(--ink); box-shadow:0 8px 24px rgba(0,0,0,.12); background-size:cover; background-position:center; -webkit-backface-visibility:hidden; backface-visibility:hidden; }
+    .card-front { background-image:url('images/card-front.jpg'); }
+    .card-back  { transform: rotateY(180deg); }
+    .card-back.c1 { background-image:url('images/c1.jpg'); }
+    .card-back.c2 { background-image:url('images/c2.jpg'); }
+    .card-back.c3 { background-image:url('images/c3.jpg'); }
+    .card-back.c4 { background-image:url('images/c4.jpg'); }
+    .card-back.c5 { background-image:url('images/c5.jpg'); }
+    .card-back.c6 { background-image:url('images/c6.jpg'); }
+
+    /* HIGHLIGHTS */
+    .highlights { background:#fff; padding:80px 20px; }
+    .highlights-container { max-width:1200px; margin:0 auto; }
+    .highlights-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:28px; }
+    .highlight-card { padding:32px 28px; background:var(--card); border-radius:12px; text-align:center; transition: all .3s; border:1px solid rgba(0,0,0,.08); }
+    .highlight-card:hover { background:#fff; box-shadow:0 8px 32px rgba(0,0,0,.08); transform: translateY(-4px); }
+    .highlight-number { font-size:48px; font-weight:700; color:#c4956b; margin-bottom:10px; }
+    .highlight-title { font-size:22px; font-weight:600; margin-bottom:8px; color:var(--ink); }
+    .highlight-text { font-size:16px; line-height:1.6; color:var(--muted); }
+
+    /* TESTIMONIALS */
+    .testimonials { background: linear-gradient(180deg, #ffffff 0%, #fbf9f6 100%); padding:80px 20px; }
+    .testimonials-container { max-width:1100px; margin:0 auto; }
+    .testimonial-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:28px; }
+    .testimonial { background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:14px; padding:28px; box-shadow:0 10px 30px rgba(0,0,0,.05); }
+    .testimonial p { font-size:18px; line-height:1.7; color:var(--fg); margin-bottom:16px; }
+    .t-person { display:flex; align-items:center; gap:14px; }
+    .t-avatar { width:48px; height:48px; border-radius:50%; background:#ddd; background-size:cover; background-position:center; }
+    .t-meta { display:flex; flex-direction:column; font-size:14px; color:var(--muted); }
+    .t-name { font-weight:700; color:var(--ink); font-size:15px; }
+
+    /* ABOUT */
+    .about { background:#fff; padding:80px 20px; }
+    .about-container { max-width:1100px; margin:0 auto; display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; }
+    .about-title { font-size:40px; margin-bottom:16px; letter-spacing:-1px; color:var(--ink); }
+    .about-text { font-size:18px; line-height:1.8; color:var(--muted); }
+    .about-highlight { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); padding:28px; border-radius:12px; border-left:4px solid var(--accent); margin:24px 0; font-size:20px; font-weight:600; color:var(--ink); line-height:1.6; }
+    .about-media { width:100%; aspect-ratio:4/3; background:#eae6df; border-radius:16px; border:2px solid var(--ink); background-image:url('images/founders-placeholder.jpg'); background-size:cover; background-position:center; }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); padding:90px 20px; text-align:center; }
+    .cta-section-container { max-width:800px; margin:0 auto; }
+    .cta-title { font-size:44px; margin-bottom:16px; letter-spacing:-1px; color:var(--ink); }
+    .cta-text { font-size:18px; line-height:1.8; margin-bottom:40px; color:var(--muted); }
+
+    /* FOOTER */
+    footer { position:relative; background:#1a1a1a; color:#a0a0a0; padding:60px 20px 30px; z-index: 2; }
+    .footer-content { max-width:1100px; margin:0 auto; }
+    .footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; margin-bottom:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1); }
+    .footer-column h4 { font-size:14px; font-weight:600; color:#f5f5f5; margin-bottom:12px; }
+    .footer-column ul { list-style:none; }
+    .footer-column a { color:#a0a0a0; text-decoration:none; font-size:13px; line-height:2; transition: color .3s; }
+    .footer-column a:hover { color:#f5f5f5; }
+    .footer-bottom { display:flex; justify-content:space-between; font-size:12px; color:#707070; flex-wrap:wrap; gap:20px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) { .about-container { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      h1 { font-size:48px; letter-spacing:-1px; }
+      .hero { min-height: 80vh; }
+      .nav-links { display:none; }
+      .cards-grid { grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:16px; }
+      .hero-card-visual, .hero-card-visual-2, .hero-card-visual-3 { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="logo">The Wedding Tarot</div>
+      <ul class="nav-links">
+        <li><a href="#cards">Karten</a></li>
+        <li><a href="#testimonials">Stimmen</a></li>
+        <li><a href="#about">Über uns</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-card-visual"></div>
+    <div class="hero-card-visual-2"></div>
+    <div class="hero-card-visual-3"></div>
+    <div class="hero-content">
+      <h1>The Wedding Tarot</h1>
+      <p class="hero-subtitle">Das inspirierende Tarot-Kartenset für eure Hochzeitsplanung</p>
+      <div class="cta-buttons">
+        <a href="#cards" class="cta-button">Karten entdecken</a>
+        <a href="#about" class="cta-button secondary">Über uns</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro (updated with your sentence + 30 cards) -->
+  <section class="intro" id="concept">
+    <h2 class="intro-title">Inspiration, nicht Vorhersagen</h2>
+    <p class="intro-text">The Wedding Tarot ist ein einzigartiges Kartenset für Paare (und Planner:innen), die ihre Hochzeit bewusst gestalten wollen – als Gesprächsanlass, Icebreaker und Entscheidungshelfer. Statt Wahrsagerei bieten wir euch 30 Karten als <strong>kreatives Reflexions-Tool</strong> – um bessere Gespräche zu führen, Entscheidungen zu klären und die Planung bewusst zu gestalten.</p>
+  </section>
+
+  <!-- Cards first -->
+  <section class="cards-section" id="cards">
+    <div class="cards-container">
+      <h2 class="section-title">Die Kartensammlung</h2>
+      <p class="section-subtitle">Bewege den Mauszeiger über eine Karte (oder tippe), um die Rückseite zu sehen.</p>
+      <div class="cards-grid">
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c1"></div></div></div>
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c2"></div></div></div>
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c3"></div></div></div>
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c4"></div></div></div>
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c5"></div></div></div>
+        <div class="card-wrapper" tabindex="0"><div class="card-inner"><div class="card-front"></div><div class="card-back c6"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="highlights">
+    <div class="highlights-container">
+      <div class="highlights-grid">
+        <div class="highlight-card"><div class="highlight-number">30</div><h3 class="highlight-title">Karten</h3><p class="highlight-text">Jede Karte eine eigenständige Reflexion.</p></div>
+        <div class="highlight-card"><div class="highlight-number">∞</div><h3 class="highlight-title">Interpretationen</h3><p class="highlight-text">Frei lesbar – Namen tragen die Bedeutung.</p></div>
+        <div class="highlight-card"><div class="highlight-number">✦</div><h3 class="highlight-title">Handillustriert</h3><p class="highlight-text">Mit Liebe zum Detail gestaltet.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-container">
+      <h2 class="section-title">Stimmen von Paaren & Planer:innen</h2>
+      <p class="section-subtitle">Zwei Platzhalter – echte Zitate später einfach ersetzen.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>„Wir haben mit den Karten <strong>endlich über das gesprochen</strong>, was uns wirklich wichtig ist – vom Budget bis zu Ritualen. Es war leicht und spielerisch.“</p>
+          <div class="t-person">
+            <div class="t-avatar" style="background-image:url('images/avatar1.jpg')"></div>
+            <div class="t-meta"><span class="t-name">Lea & Martin</span><span>Sommerscheune, 2024</span></div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>„Als Wedding Plannerin nutze ich sie im Kick-off. <strong>Klärt Erwartungen</strong> in 30 Minuten – und spart später viele Mails.“</p>
+          <div class="t-person">
+            <div class="t-avatar" style="background-image:url('images/avatar2.jpg')"></div>
+            <div class="t-meta"><span class="t-name">Celina Duarte</span><span>Wedding Planner (Placeholder)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About short -->
+  <section class="about" id="about">
+    <div class="about-container">
+      <div>
+        <h2 class="about-title">Über The Wedding Tarot</h2>
+        <p class="about-text"><strong>The Wedding Tarot</strong> ist ein einzigartiges Kartenset für Paare (und Planner:innen), die ihre Hochzeit <em>bewusst</em> gestalten wollen – als Gesprächsanlass, Icebreaker und Entscheidungshelfer.</p>
+        <div class="about-highlight">„Nicht was die Zukunft bringt, sondern was ihr daraus macht.“</div>
+        <p class="about-text"><strong>Homestory (Platzhalter):</strong> Entstanden am Küchentisch zweier Freund:innen, die als DJ & Designerin viele Hochzeiten erlebt haben – und eine <em>kreative Struktur</em> suchten, um Visionen, Werte und Grenzen sichtbar zu machen.</p>
+      </div>
+      <div class="about-media" title="Gründer:innen – Platzhalterbild"></div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-section">
+    <div class="cta-section-container">
+      <h2 class="cta-title">Bereit für eure Reise?</h2>
+      <p class="cta-text">Holt euch The Wedding Tarot – als Set für zu Hause oder als Tool für euren ersten Planungs-Workshop.</p>
+      <div class="cta-buttons">
+        <a href="#" class="cta-button">Jetzt bestellen</a>
+        <a href="#cards" class="cta-button secondary">Karten ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-column"><h4>Produkt</h4><ul><li><a href="#cards">Kartenset</a></li><li><a href="#testimonials">Stimmen</a></li><li><a href="#about">Über uns</a></li></ul></div>
+        <div class="footer-column"><h4>Unternehmen</h4><ul><li><a href="#">Kontakt</a></li><li><a href="#">Impressum</a></li><li><a href="#">Datenschutz</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; 2024 The Wedding Tarot. Alle Rechte vorbehalten.</span><span>Gemacht mit ❤️ für Liebende</span></div>
+    </div>
+  </footer>
+</body>
+</html>
