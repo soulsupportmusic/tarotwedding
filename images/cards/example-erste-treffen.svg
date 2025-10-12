@@ -1,0 +1,15 @@
+<svg width="300" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="meetingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0e8f5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c8d4e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8c4dc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="500" fill="url(#meetingGrad)"/>
+  <circle cx="120" cy="180" r="35" fill="none" stroke="#5a6a8b" stroke-width="2"/>
+  <circle cx="180" cy="180" r="35" fill="none" stroke="#5a6a8b" stroke-width="2"/>
+  <path d="M 120 200 Q 150 230 180 200" fill="none" stroke="#5a6a8b" stroke-width="2"/>
+  <text x="150" y="320" font-family="serif" font-size="24" fill="#3a4a5a" text-anchor="middle" font-weight="bold">Das erste Treffen</text>
+  <text x="150" y="360" font-family="serif" font-size="18" fill="#3a4a5a" text-anchor="middle" opacity="0.7">II</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg width="300" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="loveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5d5e0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8b4c8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dca0b8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="500" fill="url(#loveGrad)"/>
+  <circle cx="150" cy="200" r="60" fill="none" stroke="#8b6b7a" stroke-width="3"/>
+  <path d="M 150 160 L 165 190 L 135 190 Z" fill="#8b6b7a"/>
+  <text x="150" y="300" font-family="serif" font-size="28" fill="#5a4a54" text-anchor="middle" font-weight="bold">Die Liebe</text>
+  <text x="150" y="340" font-family="serif" font-size="18" fill="#5a4a54" text-anchor="middle" opacity="0.7">XIV</text>
+</svg>
