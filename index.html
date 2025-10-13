@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Das Hochzeitstarot - Eure Hochzeit bewusst gestalten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root { 
+      --fg:#2a2a2a; 
+      --muted:#6b6b6b; 
+      --bg:#f5f3f0; 
+      --bg2:#ede5df; 
+      --ink:#2a2a2a; 
+      --accent:#8b6b47; 
+      --card:#fafaf8;
+      --gold:#c4956b;
+      --page-max: 1040px;
+      --page-gutter: clamp(20px, 5vw, 52px);
+    }
+
+    body { 
+      font-family: 'Lora', 'Cormorant Garamond', serif; 
+      background: var(--bg); 
+      color: var(--fg); 
+      overflow-x: hidden; 
+      -webkit-font-smoothing: antialiased; 
+    }
+    
+    h1, h2, h3, h4, h5, h6 { 
+      font-family: 'Cormorant Garamond', serif; 
+      font-weight: 700; 
+      letter-spacing: .2px; 
+      line-height: 1.15;
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeInUp 0.8s ease-out forwards; }
+
+    /* NAV */
+    nav { 
+      position: fixed; 
+      top: 0; 
+      width: 100%; 
+      background: rgba(255,255,255,.98); 
+      backdrop-filter: blur(20px); 
+      z-index: 1000; 
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,.1); }
+    
+    .nav-content { 
+      width: 100%;
+      max-width: var(--page-max);
+      margin: 0 auto; 
+      padding: 0 var(--page-gutter); 
+      height: 70px; 
+      display:flex; 
+      justify-content: space-between; 
+      align-items:center; 
+    }
+    
+    .logo { 
+      font-size: 20px; 
+      font-weight: 700; 
+      letter-spacing: .8px; 
+      color: var(--ink); 
+      font-family: 'Cormorant Garamond', serif;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo:hover { transform: scale(1.05); }
+    
+    .nav-links { 
+      display:flex; 
+      gap:48px; 
+      list-style:none; 
+    }
+    
+    .nav-links a { 
+      color: var(--ink); 
+      text-decoration:none; 
+      font-size:16px; 
+      font-weight:500; 
+      opacity:.85; 
+      transition: all .3s;
+      position: relative;
+    }
+    
+    .nav-links a:hover { opacity:1; }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after { width: 100%; }
+
+    /* HERO - Professional Agency Style */
+    .hero { 
+      min-height: 100vh; 
+      display:flex; 
+      flex-direction:column; 
+      align-items:center; 
+      justify-content:center; 
+      text-align:center; 
+      padding: 88px var(--page-gutter) 180px; 
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); 
+      position: relative; 
+      overflow:hidden;
+      margin-top:70px;
+    }
+    
+    .hero-bg { 
+      position:absolute; 
+      inset:0; 
+      background: radial-gradient(circle at 30% 40%, rgba(230,180,140,.15) 0%, transparent 60%), 
+                  radial-gradient(circle at 70% 70%, rgba(180,160,130,.12) 0%, transparent 60%); 
+      pointer-events:none; 
+    }
+
+    .hero-content { 
+      position:relative; 
+      z-index:1; 
+      width: 100%;
+      max-width: var(--page-max);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .hero-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px; /* tighter, premium rhythm */
+    }
+    
+    .hero-cards {
+      position: relative;
+      height: 160px;
+      transform: translateY(-36px); /* Kartenstapel noch höher setzen */
+    }
+    
+    .hero-card {
+      width: 110px;
+      height: 165px;
+      border-radius: 10px;
+      position: absolute;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      transform-origin: bottom center;
+      background-size: cover;
+      background-position: center;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease;
+    }
+    
+    .hero-card:hover {
+      transform: translateX(-50%) translateY(-5px);
+    }
+    
+    .hero-card:nth-child(1) {
+      transform: translateX(-50%) rotate(-18deg) translateX(-70px);
+      background-image: url('images/hero-card.jpg');
+      z-index: 3;
+    }
+    
+    .hero-card:nth-child(2) {
+      transform: translateX(-50%) rotate(0deg);
+      background-image: url('images/hero-card-2.jpg');
+      z-index: 2;
+    }
+    
+    .hero-card:nth-child(3) {
+      transform: translateX(-50%) rotate(18deg) translateX(70px);
+      background-image: url('images/hero-card-3.jpg');
+      z-index: 1;
+    }
+    
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+    }
+    
+    h1 { 
+      font-size:clamp(56px, 8.5vw, 112px); 
+      font-weight:700; 
+      letter-spacing:-2px; 
+      line-height:1.05; 
+      color:var(--ink);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.4s forwards;
+      margin: -4px 0 0; /* minimal lift toward cards for cohesive stack */
+    }
+    
+    .hero-subtitle { 
+      font-size:clamp(22px, 2.4vw, 30px); 
+      font-weight:400; 
+      color:var(--muted); 
+      letter-spacing:-.2px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.6s forwards;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-subtitle .line { white-space: nowrap; display: block; }
+    
+    .subtitle-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .cta-buttons { 
+      display:flex; 
+      gap:24px; 
+      justify-content:center; 
+      flex-wrap:wrap;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out 0.8s forwards;
+      margin-bottom: 96px; /* großzügiger Abstand für High-End Look */
+    }
+    
+    .cta-button { 
+      display:inline-block; 
+      background: var(--ink); 
+      color:#fff; 
+      padding:18px 46px; 
+      border-radius:10px; 
+      text-decoration:none; 
+      font-size:17px; 
+      font-weight:600; 
+      transition: all .3s; 
+      box-shadow:0 6px 22px rgba(0,0,0,.18); 
+      font-family:'Lora', serif;
+      border: 2px solid var(--ink);
+      letter-spacing: 0.3px;
+    }
+    
+    .cta-button:hover { 
+      background:#1a1a1a; 
+      box-shadow:0 10px 32px rgba(0,0,0,.3); 
+      transform: translateY(-3px); 
+    }
+    
+    .cta-button.secondary { 
+      background:transparent; 
+      color:var(--ink); 
+      box-shadow:none; 
+    }
+    
+    .cta-button.secondary:hover { 
+      background:var(--ink); 
+      color:#fff; 
+    }
+
+    /* PROBLEM/SOLUTION - With original colors */
+    .problem-solution {
+      padding: 120px var(--page-gutter);
+      background: #fff;
+    }
+    
+    .ps-container {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: stretch;
+    }
+    
+    .ps-block {
+      padding: 48px;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      box-shadow: 0 12px 40px rgba(0,0,0,.08);
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      border: 2px solid transparent;
+    }
+    
+    .ps-block.problem {
+      background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+      border: 2px solid #ffcccb;
+    }
+    
+    .ps-block.solution {
+      background: linear-gradient(135deg, #f0f9f4 0%, #e6f4ec 100%);
+      border: 2px solid #b8e6c9;
+    }
+    
+    .ps-block:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+      transform: translateY(-6px);
+    }
+    
+    .ps-icon {
+      font-size: 56px;
+      margin-bottom: 24px;
+    }
+    
+    .ps-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    
+    .ps-text {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+
+    /* HOW IT WORKS */
+    .how-it-works {
+      padding: 120px var(--page-gutter);
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+    
+    .hiw-container {
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .section-title { 
+      font-size:clamp(42px, 6vw, 56px); 
+      margin-bottom:24px; 
+      letter-spacing:-1.5px; 
+      color:var(--ink); 
+    }
+    
+    .section-subtitle { 
+      font-size:20px; 
+      color:var(--muted); 
+      max-width:780px; 
+      margin:0 auto;
+      line-height: 1.6;
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .step {
+      text-align: center;
+      padding: 40px 32px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,.06);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+    }
+    
+    .step:hover {
+      background: #fff;
+      box-shadow: 0 16px 48px rgba(0,0,0,.12);
+      transform: translateY(-8px);
+    }
+    
+    .step-number {
+      display: inline-block;
+      width: 64px;
+      height: 64px;
+      line-height: 64px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    
+    .step-title {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    
+    .step-text {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--muted);
+      flex-grow: 1;
+    }
+
+    /* CARDS PREVIEW */
+    .cards-section { 
+      background: #fff;
+      padding: 160px var(--page-gutter) 140px; /* mehr Luft oben/unten */
+      --card-width: 220px;
+    }
+    
+    .cards-container { 
+      width: 100%; 
+      max-width: var(--page-max); 
+      margin:0 auto; 
+      padding:0;
+    }
+    .cards-row {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .cards-row .card-category { flex: 0 0 auto; }
+    .cards-row .cards-grid.three-inline { width: auto; }
+    
+    .card-category { 
+      margin-top: 64px;
+      margin-bottom: 96px; /* mehr Luft zwischen den Blöcken */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .card-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .card-heading-title {
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+      color: var(--ink);
+    }
+    
+    .event-cards-wrapper { 
+      display:flex; 
+      justify-content:center; 
+      align-items:center;
+      gap:56px; /* Abstand zwischen Karten */
+      flex-wrap:wrap; 
+      width: 100%;
+      max-width: var(--card-width, 160px);
+      margin: 0 auto;
+    }
+    
+    .event-card-wrapper { 
+      width: var(--card-width, 160px);
+      max-width: 100%;
+    }
+
+    .cards-grid { 
+      display:grid; 
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+      gap:40px; /* Abstand zwischen Tarotkarten */
+      justify-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+      .cards-grid.three-inline {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        justify-items: center;
+        margin: 0;
+        max-width: calc(var(--card-width, 160px) * 3 + 40px * 2);
+      }
+    
+        .card-wrapper { 
+          position:relative; 
+          width: 100%;
+          max-width: var(--card-width, 160px);
+          aspect-ratio: 7 / 12; /* Hochformat, 700mm x 1200mm */
+          cursor:pointer; 
+          perspective:1200px; 
+          transition: transform .4s ease; 
+        }
+    
+        .card-wrapper:hover { 
+          transform: translateY(-12px); 
+        }
+    
+        .card-inner { 
+          position:relative; 
+          width:100%; 
+          height:100%; 
+          transition: transform .9s ease-in-out; 
+          transform-style: preserve-3d; 
+        }
+    
+        .card-inner.is-flipped { 
+          transform: rotateY(180deg); 
+        }
+    
+    .card-front, .card-back { 
+      position:absolute; 
+      inset:0; 
+      border-radius:14px; 
+      border:1px solid rgba(0,0,0,0.06); /* dezenter Kartenrand als Platzhalter */
+      box-shadow:0 12px 36px rgba(0,0,0,.12); 
+      background-size:cover; 
+      background-position:center; 
+      background-repeat:no-repeat; 
+      background-color: var(--card);
+      backface-visibility:hidden; 
+    }
+    
+    .card-front { 
+      background-image: url('images/card-front.jpg'), linear-gradient(135deg, #f8f2ec 0%, #e8ded4 100%);
+    }
+
+    .card-front.kategorie {
+      background-image: url('images/category-front.jpg'), url('images/card-front.jpg'), linear-gradient(135deg, #f8f2ec 0%, #e8ded4 100%);
+    }
+    
+    .card-back { 
+      transform: rotateY(180deg); 
+      background-image: linear-gradient(135deg, #f0e6d9 0%, #e1d4c5 100%);
+    }
+    
+    .card-back.kategorie {
+      background-image: url('images/category-back.jpg'), linear-gradient(135deg, #f0e6d9 0%, #e1d4c5 100%);
+    }
+    
+    .card-back { 
+      transform: rotateY(180deg); 
+    }
+    
+  .card-back.c1 { background-image: url('images/c1.jpg'), linear-gradient(135deg, #f0e6d9 0%, #e1d4c5 100%); }
+  .card-back.c2 { background-image: url('images/c2.jpg'), linear-gradient(135deg, #f0e6d9 0%, #e1d4c5 100%); }
+  .card-back.c3 { background-image: url('images/c3.jpg'), linear-gradient(135deg, #f0e6d9 0%, #e1d4c5 100%); }
+
+    /* TESTIMONIALS */
+    .testimonials { 
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); 
+      padding:120px var(--page-gutter); 
+    }
+    
+    .testimonials-container { 
+      width: 100%; 
+      max-width: var(--page-max); 
+      margin:0 auto; 
+      padding:0;
+    }
+    
+    .testimonial-grid { 
+      display:grid; 
+      grid-template-columns: repeat(auto-fit, minmax(360px,1fr)); 
+      gap:40px;
+      margin-top: 80px;
+    }
+    
+    .testimonial { 
+      background:#fff; 
+      border:1px solid rgba(0,0,0,.06); 
+      border-radius:20px; 
+      padding:48px; 
+      box-shadow:0 12px 40px rgba(0,0,0,.08);
+      transition: all 0.4s ease;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .testimonial:hover {
+      box-shadow:0 20px 60px rgba(0,0,0,.15);
+      transform: translateY(-6px);
+    }
+    
+    .testimonial p { 
+      font-size:20px; 
+      line-height:1.6; 
+      color:var(--fg); 
+      margin-bottom:32px;
+      font-style: italic;
+      flex-grow: 1;
+    }
+    
+    .t-person { 
+      display:flex; 
+      align-items:center; 
+      gap:20px; 
+    }
+    
+    .t-avatar { 
+      width:60px; 
+      height:60px; 
+      border-radius:50%; 
+      background:#ddd; 
+      background-size:cover; 
+      background-position:center;
+      border: 3px solid var(--accent);
+    }
+    
+    .t-meta { 
+      display:flex; 
+      flex-direction:column; 
+      font-size:15px; 
+      color:var(--muted); 
+    }
+    
+    .t-name { 
+      font-weight:700; 
+      color:var(--ink); 
+      font-size:18px; 
+    }
+
+    /* ABOUT - No box around text, image with same height as testimonials */
+    .about { 
+      background:#fff; 
+      padding:120px var(--page-gutter); 
+    }
+
+    .about-container { 
+      width: 100%; 
+      max-width: var(--page-max); 
+      margin:0 auto; 
+      padding:0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    
+    .about-title { 
+      font-size: 42px;
+      margin-bottom: 32px; 
+      color:var(--ink); 
+      letter-spacing: -1px;
+      line-height: 1.2;
+    }
+    
+    .about-text { 
+      font-size:19px; 
+      line-height:1.7; 
+      color:var(--muted);
+    }
+    
+    .about-image {
+      background:#fff; 
+      border:1px solid rgba(0,0,0,.06); 
+      border-radius:20px; 
+      padding:48px; 
+      box-shadow:0 12px 40px rgba(0,0,0,.08);
+      transition: all 0.4s ease;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--muted);
+      background-image: url('images/founders-placeholder.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .about-image:hover {
+      box-shadow:0 20px 60px rgba(0,0,0,.15);
+      transform: translateY(-6px);
+    }
+
+    /* PRICING/CTA */
+    .pricing-cta { 
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); 
+      padding:120px var(--page-gutter); 
+      text-align:center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pricing-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    
+    .pricing-container { 
+      width: 100%; 
+      max-width: 840px; 
+      margin:0 auto; 
+      padding: 0 var(--page-gutter);
+    }
+    
+    .pricing-title { 
+      font-size:clamp(42px, 6vw, 56px); 
+      margin-bottom:28px; 
+      letter-spacing:-1.5px; 
+      color:#fff; 
+    }
+    
+    .pricing-subtitle {
+      font-size: 22px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 60px;
+      line-height: 1.6;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .price-box {
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(196,149,107,0.4);
+      border-radius: 24px;
+      padding: 60px 48px;
+      margin-bottom: 48px;
+      backdrop-filter: blur(20px);
+    }
+    
+    .price {
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    .price-detail {
+      font-size: 18px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 40px;
+    }
+    
+    .features {
+      text-align: left;
+      max-width: 480px;
+      margin: 0 auto 48px;
+    }
+    
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.9);
+    }
+    
+    .feature::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 22px;
+    }
+    
+    .cta-button.primary-inverse {
+      background: #fff;
+      color: var(--ink);
+      border: 2px solid #fff;
+      padding: 20px 52px;
+      font-size: 18px;
+    }
+    
+    .cta-button.primary-inverse:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    /* FOOTER */
+    footer { 
+      background:#1a1a1a; 
+      color:#a0a0a0; 
+      padding:60px var(--page-gutter) 30px; 
+    }
+    
+    .footer-content { 
+      width: 100%;
+      max-width: var(--page-max);
+      margin:0 auto; 
+      padding:0;
+    }
+    
+    .footer-links { 
+      display:flex; 
+      justify-content: center;
+      gap: 48px;
+      margin-bottom:40px; 
+      padding-bottom:40px; 
+      border-bottom:1px solid rgba(255,255,255,.1); 
+    }
+    
+    .footer-links a { 
+      color:#a0a0a0; 
+      text-decoration:none; 
+      font-size:15px; 
+      transition: color .3s; 
+    }
+    
+    .footer-links a:hover { 
+      color:#f5f5f5; 
+    }
+    
+    .footer-bottom { 
+      display:flex; 
+      justify-content:space-between; 
+      font-size:14px; 
+      color:#707070; 
+      flex-wrap:wrap; 
+      gap:24px; 
+    }
+
+    /* Container für die Kategoriekarte verkleinern */
+    .card-category .event-cards-wrapper {
+      max-width: var(--card-width, 160px);
+      margin: 0 auto;
+    }
+
+    /* RESPONSIVE */
+    @media (min-width: 1024px) {
+      .cards-row {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) 1fr;
+        align-items: start;
+        gap: 80px;
+      }
+      .card-category {
+        align-items: flex-start;
+      }
+      .card-category .event-cards-wrapper {
+        margin: 0;
+        justify-content: flex-start;
+      }
+      .cards-grid {
+        max-width: none;
+        justify-items: flex-start;
+      }
+      .cards-grid.three-inline {
+        width: 100%;
+        gap: 32px;
+      }
+      .cards-grid.three-inline .card-wrapper {
+        max-width: var(--card-width, 240px);
+      }
+      .card-heading {
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .ps-container { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      .nav-content { height: 64px; padding: 0 20px; }
+      .hero { min-height: auto; padding: 120px 24px 80px; margin-top: 64px; }
+      .hero-content { gap: 36px; }
+      .hero-header { gap: 56px; }
+      h1 { font-size: clamp(42px, 9vw, 60px); letter-spacing: -1px; }
+      .hero-subtitle { font-size: 20px; line-height: 1.45; }
+      .hero-cards { height: 120px; transform: translateY(-16px); }
+      .hero-card { width: 84px; height: 124px; box-shadow: 0 10px 28px rgba(0,0,0,0.22); }
+      .about-container { grid-template-columns: 1fr; gap: 40px; }
+      .about-content { padding: 0; text-align: center; }
+      .footer-links { flex-wrap: wrap; gap: 24px; }
+      .pricing-cta { padding: 100px 24px; }
+      .section-header { margin-bottom: 64px; }
+    }
+
+    @media (max-width: 768px) {
+      body { font-size: 16px; }
+      .hero { padding: 110px 20px 64px; }
+      .hero-cards { height: 110px; transform: translateY(0); }
+      .hero-card { width: 76px; height: 112px; }
+      .hero-card:nth-child(1) { transform: translateX(-50%) rotate(-12deg) translateX(-40px); }
+      .hero-card:nth-child(3) { transform: translateX(-50%) rotate(12deg) translateX(40px); }
+      .cta-buttons { flex-direction: column; align-items: stretch; gap: 16px; }
+      .cta-button { width: 100%; max-width: 260px; padding: 14px 28px; font-size: 16px; }
+      .cards-section { padding: 120px 20px 96px; --card-gap: 18px; }
+    .cards-row { flex-direction: column; gap: 32px; align-items: center; width: 100%; }
+      .card-category { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .card-heading { text-align: center; align-items: center; }
+      .card-heading-title { font-size: 30px; }
+      .card-category .event-cards-wrapper { max-width: none; width: 100%; display: flex; justify-content: center; }
+      .event-card-wrapper { width: calc((100% - 2 * var(--card-gap, 18px)) / 3); max-width: 220px; }
+      .cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--card-gap); width: 100%; }
+      .cards-grid.three-inline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cards-grid.three-inline .card-wrapper { width: 100%; }
+      .card-wrapper { width: 100%; max-width: none; }
+      .section-title { font-size: 32px; }
+      .section-subtitle { font-size: 18px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .price { font-size: 52px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-content { padding: 0 16px; }
+      .logo { font-size: 18px; }
+      .hero { padding-top: 108px; padding-bottom: 56px; }
+      h1 { font-size: clamp(34px, 9vw, 40px); }
+      .hero-subtitle { font-size: 18px; line-height: 1.4; }
+      .subtitle-lines { gap: 6px; }
+      .hero-cards { height: 96px; transform: translateY(0); }
+      .hero-card { width: 68px; height: 100px; box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
+      .cards-section { padding: 96px 16px 80px; --card-gap: 14px; }
+      .card-heading-title { font-size: 26px; }
+      .event-card-wrapper { width: calc((100% - 2 * var(--card-gap, 14px)) / 3); max-width: 180px; }
+      .cards-grid { gap: var(--card-gap); }
+      .cards-grid.three-inline { gap: var(--card-gap); }
+      .cards-grid.three-inline .card-wrapper { width: 100%; }
+      .card-category { margin-top: 32px; margin-bottom: 48px; }
+      .section-header { margin-bottom: 52px; }
+      .pricing-cta { padding: 80px 20px; }
+      .price-box { padding: 48px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-subtitle .line { white-space: normal; }
+    }
+
+    /* Große Bildschirme: Hero skalieren, damit es nicht zu klein wirkt */
+    @media (min-width: 1400px) {
+      .hero-content { max-width: 1280px; }
+      h1 { font-size: clamp(64px, 8vw, 128px); }
+      .hero-subtitle { font-size: clamp(24px, 2.2vw, 36px); max-width: 1040px; }
+      .hero-cards { height: 200px; }
+      .hero-card { width: 140px; height: 210px; }
+    }
+  
+/* --- FIX: Kein horizontales Scrollen mehr --- */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.cards-row,
+.cards-grid,
+.hero,
+.ps-container,
+.about-container,
+.testimonials-container,
+.footer-content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.cards-row {
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.cards-grid,
+.cards-grid.three-inline {
+  width: 100%;
+  max-width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  justify-items: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.hero-card:nth-child(1),
+.hero-card:nth-child(3) {
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(-10deg);
+}
+.hero-card:nth-child(3) {
+  transform: translateX(-50%) rotate(10deg);
+}
+
+/* --- UPDATE: Überschriften mittig & höher, Kartengrößen angleichen --- */
+.card-heading {
+  text-align: center !important;
+  align-items: center !important;
+  margin-bottom: 60px !important; /* etwas höher */
+}
+
+.card-heading-title {
+  text-align: center !important;
+  width: 100%;
+}
+
+.cards-grid.three-inline .card-wrapper,
+.event-card-wrapper {
+  width: 220px !important;
+  max-width: 220px !important;
+  aspect-ratio: 7 / 12 !important;
+}
+
+/* --- FIX: Tarotkarten und Kategoriekarte zentriert & nicht abgeschnitten --- */
+.cards-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 64px;
+  overflow: visible !important;
+}
+
+.card-category.is-category,
+.card-category.is-tarot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-cards-wrapper,
+.cards-grid.three-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  overflow: visible !important;
+  margin-top: 0 !important;
+}
+
+.cards-grid.three-inline .card-wrapper,
+.event-card-wrapper {
+  width: 220px !important;
+  max-width: 220px !important;
+  aspect-ratio: 7 / 12 !important;
+}
+
+.card-heading {
+  margin-bottom: 40px !important;
+}
+
+/* --- LAYOUT: Kategoriekarte + 3 Tarotkarten in EINER Reihe --- */
+.cards-section .cards-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap; /* bricht auf kleineren Screens um */
+  overflow: visible !important;
+}
+
+.card-category.is-category,
+.card-category.is-tarot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+/* Überschriften beibehalten, aber gleich hoch, damit die Kartenflucht eine Linie bildet */
+.card-heading {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 20px !important;
+  text-align: center !important;
+}
+
+/* Karten-Container auf Desktop nebeneinander */
+.card-category.is-category .event-cards-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 0;
+}
+
+.card-category.is-tarot .cards-grid.three-inline {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 0;
+}
+
+/* Einheitliche Kartengröße (wie abgesprochen) */
+.cards-grid.three-inline .card-wrapper,
+.event-card-wrapper {
+  width: 220px !important;
+  max-width: 220px !important;
+  aspect-ratio: 7 / 12 !important;
+}
+
+@media (min-width: 1024px) {
+  /* Zwei Gruppen nebeneinander, die zusammen eine 4er-Reihe ergeben */
+  .cards-section .cards-row {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Auf kleineren Screens 2x2 oder 1x4 möglich (automatischer Umbruch) */
+  .cards-section .cards-row {
+    gap: 24px;
+  }
+  .cards-grid.three-inline .card-wrapper,
+  .event-card-wrapper {
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .cards-grid.three-inline .card-wrapper,
+  .event-card-wrapper {
+    width: 180px !important;
+    max-width: 180px !important;
+  }
+}
+</style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-content">
+      <div class="logo">Das Hochzeitstarot</div>
+      <ul class="nav-links">
+        <li><a href="#wie-es-funktioniert">So geht's</a></li>
+        <li><a href="#karten">Karten</a></li>
+        <li><a href="#stimmen">Stimmen</a></li>
+    <li><a href="#bestellen">Vorbestellen</a></li>
+    <li><a href="#karten">Deck</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-header">
+        <div class="hero-cards">
+          <div class="hero-card"></div>
+          <div class="hero-card"></div>
+          <div class="hero-card"></div>
+        </div>
+        <div class="hero-text">
+          <h1>Das Hochzeitstarot</h1>
+          <div class="subtitle-lines">
+            <p class="hero-subtitle"><span class="line">Einzigartige Karten, die euch helfen, eure Hochzeit bewusst zu gestalten –</span><span class="line">als Gesprächsanlass, Icebreaker und Entscheidungshelfer</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="cta-buttons">
+        <a href="#bestellen" class="cta-button">Jetzt vorbestellen</a>
+        <a href="#wie-es-funktioniert" class="cta-button secondary">So funktioniert's</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-solution">
+    <div class="ps-container">
+      <div class="ps-block problem">
+        <div class="ps-icon">😰</div>
+        <h2 class="ps-title">Die Herausforderung</h2>
+        <p class="ps-text">Hochzeitsplanung kann überwältigend sein. Endlose Entscheidungen, unterschiedliche Erwartungen und die Angst, etwas Wichtiges zu vergessen. Viele Paare wissen nicht, wo sie anfangen sollen.</p>
+      </div>
+      <div class="ps-block solution">
+        <div class="ps-icon">✨</div>
+        <h2 class="ps-title">Die Lösung</h2>
+  <p class="ps-text">Das Hochzeitstarot gibt euch eine spielerische Struktur. Keine Wahrsagerei, sondern 36 durchdachte Impulse, die euch helfen, über das zu sprechen, was euch wirklich wichtig ist – vom Catering bis zur Musik. So etwas Einzigartiges gab es bisher noch nicht.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="wie-es-funktioniert">
+    <div class="hiw-container">
+      <div class="section-header">
+  <h2 class="section-title">So geht's</h2>
+        <p class="section-subtitle">In drei einfachen Schritten zu mehr Klarheit in eurer Hochzeitsplanung</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Karte ziehen</h3>
+          <p class="step-text">Wählt eine Kategoriekarte und drei Tarotkarten – spontan oder gezielt nach Thema.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Interpretieren</h3>
+          <p class="step-text">Lasst euch von der Illustration und dem Namen inspirieren. Jede Karte trägt ihre Bedeutung bereits in sich.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Entscheiden</h3>
+          <p class="step-text">Nutzt die Impulse für eure Gespräche und Entscheidungen. Dokumentiert eure Gedanken. Und vor allem: Habt Spaß 😊</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards-section" id="karten">
+    <div class="cards-container">
+      <div class="section-header">
+        <h2 class="section-title">Ein Blick ins Deck</h2>
+        <p class="section-subtitle">Bewegt den Mauszeiger über eine Karte, oder klickt, um sie umzudrehen</p>
+      </div>
+      
+      <div class="cards-row">
+        <div class="card-category is-category">
+          <div class="card-heading">
+            <h3 class="card-heading-title">Kategoriekarte</h3>
+          </div>
+          <div class="event-cards-wrapper">
+            <div class="card-wrapper event-card-wrapper" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-inner">
+                <div class="card-front kategorie"></div>
+                <div class="card-back kategorie"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-category is-tarot">
+          <div class="card-heading">
+            <h3 class="card-heading-title">Tarot-Impulse zur Inspiration</h3>
+          </div>
+          <div class="cards-grid three-inline">
+            <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back c1"></div>
+              </div>
+            </div>
+            <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back c2"></div>
+              </div>
+            </div>
+            <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false">
+              <div class="card-inner">
+                <div class="card-front"></div>
+                <div class="card-back c3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials" id="stimmen">
+    <div class="testimonials-container">
+      <div class="section-header">
+        <h2 class="section-title">Was Paare & Planer:innen sagen</h2>
+  <p class="section-subtitle">Erfahrungen von Menschen, die Das Hochzeitstarot bereits nutzen</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>„Wir haben mit den Karten endlich über das gesprochen, was uns wirklich wichtig ist. Es war leicht und spielerisch."</p>
+          <div class="t-person">
+            <div class="t-avatar" style="background-color: #e6d7c9;"></div>
+            <div class="t-meta">
+              <span class="t-name">Lea & Martin</span>
+              <span>Sommerscheune, 2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>„Als Wedding Plannerin nutze ich sie im Kick-off. Klärt Erwartungen in 30 Minuten – und spart später viele Mails."</p>
+          <div class="t-person">
+            <div class="t-avatar" style="background-color: #d9e3e6;"></div>
+            <div class="t-meta">
+              <span class="t-name">Celina Duarte</span>
+              <span>Wedding Planner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-container">
+      <div class="about-content">
+        <h2 class="about-title">Über uns</h2>
+        <p class="about-text">Entstanden am Küchentisch durch die Freunde Frederik & Ludwig, die als DJs viele Hochzeiten erlebt haben – und eine kreative Struktur suchten, um die Hochzeitsplanung zu unterstützen.</p>
+      </div>
+  <div class="about-image" aria-label="Frederik & Ludwig"></div>
+    </div>
+  </section>
+
+  <section class="pricing-cta" id="bestellen">
+    <div class="pricing-container">
+      <h2 class="pricing-title">Bereit für eure Reise?</h2>
+      <p class="pricing-subtitle">Holt euch Das Hochzeitstarot – als Set für zu Hause oder als Tool für euren ersten Planungs-Workshop.</p>
+      
+      <div class="price-box">
+        <div class="price">29€</div>
+        <div class="price-detail">Versandkostenfrei innerhalb Deutschlands</div>
+        
+        <div class="features">
+          <div class="feature">6 Kategoriekarten für Struktur</div>
+          <div class="feature">30 handillustrierte Tarotkarten</div>
+          <div class="feature">Interpretationen und Deutungen</div>
+          <div class="feature">Hochwertige Schachtel</div>
+        </div>
+        
+        <a href="mailto:soulmusic.bielefeld@gmail.com?subject=Vorbestellung Das Hochzeitstarot" class="cta-button primary-inverse">Jetzt vorbestellen</a>
+      </div>
+      
+      <p style="font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 24px;">
+        Fragen? Schreibt uns an soulmusic.bielefeld@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="mailto:soulmusic.bielefeld@gmail.com">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 Das Hochzeitstarot. Alle Rechte vorbehalten.</span>
+        <span>Gemacht mit ❤️ für Liebende</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Add scrolled class to nav on scroll
+    window.addEventListener('scroll', function() {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Keep cards flipped after initial interaction
+    document.querySelectorAll('.card-wrapper').forEach(function(wrapper) {
+      const inner = wrapper.querySelector('.card-inner');
+      if (!inner) {
+        return;
+      }
+
+      const markFlipped = function() {
+        if (inner.classList.contains('is-flipped')) {
+          return;
+        }
+        inner.classList.add('is-flipped');
+        wrapper.setAttribute('aria-pressed', 'true');
+      };
+
+      wrapper.addEventListener('click', markFlipped);
+      wrapper.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          markFlipped();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
