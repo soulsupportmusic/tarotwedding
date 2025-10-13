@@ -179,19 +179,19 @@
     
     .hero-card:nth-child(1) {
       transform: translateX(-50%) rotate(-18deg) translateX(-70px);
-      background-image: url('images/c1.jpg');
+      background-image: url('images/hero-card.jpg');
       z-index: 3;
     }
     
     .hero-card:nth-child(2) {
       transform: translateX(-50%) rotate(0deg);
-      background-image: url('images/c1.jpg');
+      background-image: url('images/hero-card-2.jpg');
       z-index: 2;
     }
     
     .hero-card:nth-child(3) {
       transform: translateX(-50%) rotate(18deg) translateX(70px);
-      background-image: url('images/c1.jpg');
+      background-image: url('images/hero-card-3.jpg');
       z-index: 1;
     }
     
@@ -427,8 +427,7 @@
     .cards-section { 
       background: #fff;
       padding: 160px 32px 140px; /* mehr Luft oben/unten */
-      /* Beispiele nochmal 1/3 größer */
-      --card-width: 284px; /* 213px * 1.333... */
+      --card-width: 240px;
     }
     
     .cards-container { 
@@ -450,15 +449,25 @@
     .card-category { 
       margin-top: 64px;
       margin-bottom: 96px; /* mehr Luft zwischen den Blöcken */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
-    .category-title { 
-      font-size:36px; 
-      text-align:center; 
-      margin-bottom: 40px; /* etwas kompakter, aber elegant */
-      color:var(--accent); 
-      font-weight:600; 
-      letter-spacing:-1px; 
+    .card-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .card-heading-title {
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+      color: var(--ink);
     }
     
     .event-cards-wrapper { 
@@ -469,26 +478,28 @@
     }
     
     .event-card-wrapper { 
-      width: var(--card-width, 160px);
+      width: 100%;
+      max-width: var(--card-width, 160px);
     }
 
     .cards-grid { 
       display:grid; 
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
-      gap:56px; /* erhöhten Abstand zwischen Tarotkarten */
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+      gap:40px; /* erhöhter Abstand zwischen Tarotkarten */
       justify-items: center;
       max-width: 900px;
       margin: 0 auto;
     }
       .cards-grid.three-inline {
-        grid-template-columns: repeat(3, minmax(0, auto));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         justify-items: center;
         margin: 0;
       }
     
     .card-wrapper { 
       position:relative; 
-      width: var(--card-width, 160px);
+      width: 100%;
+      max-width: var(--card-width, 160px);
       aspect-ratio: 7 / 12; /* Hochformat, 700mm x 1200mm */
       cursor:pointer; 
       perspective:1200px; 
@@ -525,24 +536,24 @@
     }
     
     .card-front { 
-      background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+      background-image: url('images/card-front.jpg');
     }
-    
+
     .card-front.kategorie {
-      background-image: url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+      background-image: url('images/category-front.jpg');
+    }
+
+    .card-back.kategorie {
+      background-image: url('images/category-back.jpg');
     }
     
     .card-back { 
       transform: rotateY(180deg); 
     }
     
-    .card-back.kategorie {
-      background-image: url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
-    }
-    
-    .card-back.c1 { background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'); }
-    .card-back.c2 { background-image: url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'); }
-    .card-back.c3 { background-image: url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'); }
+    .card-back.c1 { background-image: url('images/c1.jpg'); }
+    .card-back.c2 { background-image: url('images/c1.jpg'); }
+    .card-back.c3 { background-image: url('images/c1.jpg'); }
 
     /* TESTIMONIALS */
     .testimonials { 
@@ -666,6 +677,9 @@
       justify-content: center;
       font-size: 20px;
       color: var(--muted);
+      background-image: url('images/founders-placeholder.jpg');
+      background-size: cover;
+      background-position: center;
     }
     
     .about-image:hover {
@@ -821,139 +835,106 @@
       margin: 0 auto;
     }
 
-    /* Modernere Symbole für Kategorietitel */
-    .category-title::before,
-    .category-title::after {
-      content: '✨';
-      margin: 0 12px;
-      font-size: 24px;
-    }
-
     /* RESPONSIVE */
-    @media (max-width: 900px) { 
-      .ps-container { 
-        grid-template-columns: 1fr; 
-        gap: 32px;
-      }
-      
-      .nav-links { 
-        display:none; 
-      }
-      
-      h1 {
-
-    /* Große Displays: strikt nebeneinander, kein Umbruch */
     @media (min-width: 1024px) {
-      .cards-row { flex-wrap: nowrap; }
-    }
-        font-size: 48px;
-      }
-      
-      .hero {
-        min-height: 90vh;
-        padding: 100px 24px 60px;
-      }
-      
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 24px;
-      }
-      
-      .hero-content {
-        gap: 48px;
-      }
-      
-      .hero-header {
+      .cards-row {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) 1fr;
+        align-items: start;
         gap: 80px;
       }
-      
-      .about-content {
-        padding: 0;
-        text-align: center;
+      .card-category {
+        align-items: flex-start;
       }
-      
-      .hero-cards {
-        height: 140px;
+      .card-category .event-cards-wrapper {
+        margin: 0;
+        justify-content: flex-start;
       }
-      
-      .hero-card {
-        width: 90px;
-        height: 140px;
+      .cards-grid {
+        max-width: none;
+        justify-items: flex-start;
       }
-
-      .category-title::before,
-      .category-title::after {
-        margin: 0 8px;
-        font-size: 20px;
+      .cards-grid.three-inline {
+        width: 100%;
+        gap: 32px;
+      }
+      .cards-grid.three-inline .card-wrapper {
+        max-width: var(--card-width, 240px);
+      }
+      .card-heading {
+        text-align: left;
+        align-items: flex-start;
       }
     }
-    
-    @media (max-width: 768px) {
-      .hero-subtitle { font-size: 20px; }
-      /* Mobil: ebenfalls nochmal 1/3 größer als vorher */
-      .cards-section { --card-width: 248px; }
-      .cards-grid { 
-        grid-template-columns: repeat(auto-fit, minmax(var(--card-width),1fr)); 
-        gap:20px; 
-      }
-        .cards-row { gap: 32px; }
-        .cards-grid.three-inline { grid-template-columns: 1fr 1fr; }
-      
-      .event-card-wrapper {
-        width: var(--card-width);
-      }
-      
-      .section-title {
-        font-size: 36px;
-      }
-      
-      .price {
-        font-size: 56px;
-      }
-      
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-      }
-      
-      .hero-cards {
-        height: 120px;
-      }
-      
-      .hero-card {
-        width: 80px;
-        height: 120px;
-      }
-      
-      .hero-card:nth-child(1) {
-        transform: translateX(-50%) rotate(-15deg) translateX(-50px);
-      }
-      
-      .hero-card:nth-child(3) {
-        transform: translateX(-50%) rotate(15deg) translateX(50px);
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .cta-button {
-        width: 100%;
-        max-width: 280px;
-      }
 
-      .category-title::before,
-      .category-title::after {
-        margin: 0 6px;
-        font-size: 18px;
-      }
+    @media (max-width: 900px) {
+      .ps-container { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      .nav-content { height: 64px; padding: 0 20px; }
+      .hero { min-height: auto; padding: 120px 24px 80px; margin-top: 64px; }
+      .hero-content { gap: 36px; }
+      .hero-header { gap: 56px; }
+      h1 { font-size: clamp(42px, 9vw, 60px); letter-spacing: -1px; }
+      .hero-subtitle { font-size: 20px; line-height: 1.45; }
+      .hero-cards { height: 120px; transform: translateY(-16px); }
+      .hero-card { width: 84px; height: 124px; box-shadow: 0 10px 28px rgba(0,0,0,0.22); }
+      .about-container { grid-template-columns: 1fr; gap: 40px; }
+      .about-content { padding: 0; text-align: center; }
+      .footer-links { flex-wrap: wrap; gap: 24px; }
+      .pricing-cta { padding: 100px 24px; }
+      .section-header { margin-bottom: 64px; }
+    }
+
+    @media (max-width: 768px) {
+      body { font-size: 16px; }
+      .hero { padding: 110px 20px 64px; }
+      .hero-cards { height: 110px; transform: translateY(0); }
+      .hero-card { width: 76px; height: 112px; }
+      .hero-card:nth-child(1) { transform: translateX(-50%) rotate(-12deg) translateX(-40px); }
+      .hero-card:nth-child(3) { transform: translateX(-50%) rotate(12deg) translateX(40px); }
+      .cta-buttons { flex-direction: column; align-items: stretch; gap: 16px; }
+      .cta-button { width: 100%; max-width: 260px; padding: 14px 28px; font-size: 16px; }
+      .cards-section { padding: 120px 20px 96px; --card-gap: 18px; }
+      .cards-row { flex-direction: column; gap: 32px; align-items: center; }
+      .card-category { width: 100%; display: flex; flex-direction: column; align-items: center; }
+      .card-heading { text-align: center; align-items: center; }
+      .card-heading-title { font-size: 30px; }
+      .card-category .event-cards-wrapper { max-width: none; width: 100%; display: flex; justify-content: center; }
+      .event-card-wrapper { width: calc((100% - 2 * var(--card-gap, 18px)) / 3); max-width: 220px; }
+      .cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--card-gap); width: 100%; }
+      .cards-grid.three-inline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .cards-grid.three-inline .card-wrapper { width: 100%; }
+      .card-wrapper { width: 100%; max-width: none; }
+      .section-title { font-size: 32px; }
+      .section-subtitle { font-size: 18px; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .price { font-size: 52px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-content { padding: 0 16px; }
+      .logo { font-size: 18px; }
+      .hero { padding-top: 108px; padding-bottom: 56px; }
+      h1 { font-size: clamp(34px, 9vw, 40px); }
+      .hero-subtitle { font-size: 18px; line-height: 1.4; }
+      .subtitle-lines { gap: 6px; }
+      .hero-cards { height: 96px; transform: translateY(0); }
+      .hero-card { width: 68px; height: 100px; box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
+      .cards-section { padding: 96px 16px 80px; --card-gap: 14px; }
+      .card-heading-title { font-size: 26px; }
+      .event-card-wrapper { width: calc((100% - 2 * var(--card-gap, 14px)) / 3); max-width: 180px; }
+      .cards-grid { gap: var(--card-gap); }
+      .cards-grid.three-inline { gap: var(--card-gap); }
+      .cards-grid.three-inline .card-wrapper { width: 100%; }
+      .card-category { margin-top: 32px; margin-bottom: 48px; }
+      .section-header { margin-bottom: 52px; }
+      .pricing-cta { padding: 80px 20px; }
+      .price-box { padding: 48px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-subtitle .line { white-space: normal; }
     }
 
     /* Große Bildschirme: Hero skalieren, damit es nicht zu klein wirkt */
@@ -974,7 +955,8 @@
         <li><a href="#wie-es-funktioniert">So geht's</a></li>
         <li><a href="#karten">Karten</a></li>
         <li><a href="#stimmen">Stimmen</a></li>
-        <li><a href="#bestellen">Bestellen</a></li>
+    <li><a href="#bestellen">Vorbestellen</a></li>
+    <li><a href="#karten">Deck</a></li>
       </ul>
     </div>
   </nav>
@@ -1020,7 +1002,7 @@
   <section class="how-it-works" id="wie-es-funktioniert">
     <div class="hiw-container">
       <div class="section-header">
-        <h2 class="section-title">So funktioniert's</h2>
+  <h2 class="section-title">So geht's</h2>
         <p class="section-subtitle">In drei einfachen Schritten zu mehr Klarheit in eurer Hochzeitsplanung</p>
       </div>
       <div class="steps">
@@ -1051,8 +1033,10 @@
       </div>
       
       <div class="cards-row">
-        <div class="card-category">
-          <h3 class="category-title">Beispiel: Kategoriekarte</h3>
+        <div class="card-category is-category">
+          <div class="card-heading">
+            <h3 class="card-heading-title">Eine Kategoriekarte</h3>
+          </div>
           <div class="event-cards-wrapper">
             <div class="card-wrapper event-card-wrapper" tabindex="0">
               <div class="card-inner">
@@ -1063,8 +1047,10 @@
           </div>
         </div>
         
-        <div class="card-category">
-          <h3 class="category-title">Beispiele: Tarotkarten</h3>
+        <div class="card-category is-tarot">
+          <div class="card-heading">
+            <h3 class="card-heading-title">Drei Tarot-Impulse zur Inspiration</h3>
+          </div>
           <div class="cards-grid three-inline">
             <div class="card-wrapper" tabindex="0">
               <div class="card-inner">
@@ -1098,7 +1084,7 @@
       </div>
       <div class="testimonial-grid">
         <div class="testimonial">
-          <p>„Wir haben mit den Karten endlich über das gesprochen, was uns wirklich wichtig ist – vom Catering bis zur Musik. Es war leicht und spielerisch."</p>
+          <p>„Wir haben mit den Karten endlich über das gesprochen, was uns wirklich wichtig ist. Es war leicht und spielerisch."</p>
           <div class="t-person">
             <div class="t-avatar" style="background-color: #e6d7c9;"></div>
             <div class="t-meta">
@@ -1127,7 +1113,7 @@
         <h2 class="about-title">Über uns</h2>
         <p class="about-text">Entstanden am Küchentisch durch die Freunde Frederik & Ludwig, die als DJs viele Hochzeiten erlebt haben – und eine kreative Struktur suchten, um die Hochzeitsplanung zu unterstützen.</p>
       </div>
-      <div class="about-image">Frederik & Ludwig</div>
+  <div class="about-image" aria-label="Frederik & Ludwig"></div>
     </div>
   </section>
 
