@@ -53,7 +53,7 @@
   @keyframes in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
   /* Tab-Leiste */
-  .tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: var(--paper); padding: 6px 6px calc(env(safe-area-inset-bottom, 0px) + 8px); }
+  .tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--paper); padding: 6px 6px calc(env(safe-area-inset-bottom, 0px) + 8px); }
   .tab { display: grid; justify-items: center; gap: 3px; padding: 6px 0; font-size: 11px; color: var(--muted); border-radius: 12px; }
   .tab svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .tab[aria-current="page"] { color: var(--terra); font-weight: 600; }
@@ -169,6 +169,53 @@
   .onboard .fan img { width: 100px; margin-left: -50px; }
   .onboard form { display: grid; gap: 14px; text-align: left; }
 
+  /* Monetarisierung */
+  .lock { position: relative; }
+  .lock::after {
+    content: ''; position: absolute; inset: 0; border-radius: 10px; background: rgba(251,246,236,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232b2620' stroke-width='1.8' stroke-linecap='round'%3E%3Crect x='5' y='11' width='14' height='10' rx='2' fill='%23fffdf8'/%3E%3Cpath d='M8 11V8a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E") center 42% / 30px no-repeat;
+  }
+  .plus-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--gold); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .chip.plus { color: var(--gold); border-color: var(--gold); }
+  .upsell { display: grid; grid-template-columns: 1fr auto; gap: 10px 14px; align-items: center; text-align: left; background: var(--navy); color: #fff; border-radius: 20px; padding: 18px; }
+  .upsell b { font-family: var(--display); font-size: 21px; }
+  .upsell p { grid-column: 1 / -1; font-size: 14px; opacity: .8; line-height: 1.45; }
+  .upsell .go { background: var(--gold); color: var(--ink); padding: 9px 14px; border-radius: 12px; font-weight: 600; font-size: 14px; }
+  .offer { display: grid; gap: 4px; text-align: left; border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 16px; background: var(--paper); width: 100%; }
+  .offer.best { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,151,63,.15); }
+  .offer-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .offer-top b { font-family: var(--display); font-size: 20px; }
+  .offer-top span { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .offer small { color: var(--muted); font-size: 13px; line-height: 1.4; }
+  .perks { display: grid; gap: 8px; text-align: left; width: 100%; font-size: 15px; }
+  .perks li { list-style: none; display: grid; grid-template-columns: 22px 1fr; }
+  .perks li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+  .demo-note { font-size: 12px; color: var(--muted); text-align: center; }
+  .product { display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: center; text-align: left; }
+  .product .pic { width: 76px; aspect-ratio: 1; border-radius: 14px; display: grid; place-items: center; overflow: hidden; background: var(--desk); }
+  .product .pic img { width: 46px; transform: rotate(-6deg); }
+  .product b { font-family: var(--display); font-size: 19px; display: block; }
+  .product p { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .product .price { margin-top: 6px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .product .price span { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .buy { background: var(--ink); color: var(--cream); padding: 7px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+  .buy.owned { background: var(--olive); }
+  .section-title { font-size: 22px; margin-top: 4px; }
+  .partner { display: grid; grid-template-columns: 48px 1fr; gap: 12px; align-items: center; text-align: left; }
+  .partner .logo { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font: 700 18px var(--display); color: #fff; }
+  .partner b { font-family: var(--display); font-size: 18px; display: block; }
+  .partner p { font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .sponsored { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+  .book { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 6px 14px 14px 6px; box-shadow: -6px 0 0 var(--navy), 0 14px 30px rgba(60,40,20,.18); padding: 26px 22px; text-align: left; display: grid; gap: 14px; }
+  .book h3 { font-size: 26px; text-align: center; }
+  .book .entry { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px; }
+  .book .entry b { font-family: var(--display); font-size: 17px; }
+  .book .entry p { font-size: 13px; line-height: 1.5; }
+  .code-row { display: flex; gap: 8px; }
+  .code-row input { flex: 1; text-transform: uppercase; letter-spacing: 2px; }
+  .code-row button { padding: 0 16px; border-radius: 14px; background: var(--ink); color: var(--cream); font-weight: 600; }
+  .err { color: var(--terra); font-size: 13px; min-height: 1em; }
+  .ref { font: 700 22px var(--display); letter-spacing: 3px; background: var(--paper); border: 1.5px dashed var(--gold); border-radius: 12px; padding: 10px 18px; user-select: all; }
+
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -182,6 +229,7 @@
       <button class="tab" data-tab="draw"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="9" height="15" rx="1.5" transform="rotate(-8 8 12)"/><rect x="11" y="4" width="9" height="15" rx="1.5" transform="rotate(8 15 11)"/></svg>Ziehen</button>
       <button class="tab" data-tab="deck"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="8" rx="1"/><rect x="14" y="3" width="7" height="8" rx="1"/><rect x="3" y="13" width="7" height="8" rx="1"/><rect x="14" y="13" width="7" height="8" rx="1"/></svg>Deck</button>
       <button class="tab" data-tab="notes"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg>Notizen</button>
+      <button class="tab" data-tab="shop"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Shop</button>
     </nav>
   </div>
 </div>
@@ -232,6 +280,25 @@
     ['Der Toast', 'Worauf wollt ihr gemeinsam anstoßen?'],
     ['Der familiäre Kreis', 'Wie bezieht ihr eure Familien mit ein?']
   ];
+  // Freemium: Diese Kategorien sind kostenlos, der Rest gehört zu „Hochzeitstarot Plus“.
+  var FREE_CATS = [4, 1];
+  var DECK_CODE = 'HT-LIEBE-2026';   // Demo-Code, liegt im echten Produkt jeder Schachtel bei
+  var PARTNERS = {
+    4: { name: 'Soul Support Music', what: 'DJ-Duo Frederik & Ludwig · Bielefeld & bundesweit', color: '#253650', initials: 'SSM', own: true },
+    0: { name: 'Beispiel: Freie Trauung', what: 'Trauredner:innen in eurer Region', color: '#8a8d4f', initials: 'FT' },
+    1: { name: 'Beispiel: Fotobox', what: 'Fotobox mit Sofortdruck fürs Gästebuch', color: '#c46a43', initials: 'FB' },
+    2: { name: 'Beispiel: Locations', what: 'Scheunen, Gärten & Gutshöfe in eurer Nähe', color: '#7a6f62', initials: 'LO' },
+    3: { name: 'Beispiel: Floristik', what: 'Brautstrauß, Tischdeko & Bögen', color: '#b0784f', initials: 'FL' },
+    5: { name: 'Beispiel: Catering', what: 'Fingerfood, Buffet oder Foodtruck', color: '#c9973f', initials: 'CA' }
+  };
+  var PRODUCTS = [
+    { id: 'deck', group: 'Karten', name: 'Das Hochzeitstarot', desc: '36 Karten, Deutungen & Schachtel. Inklusive Code für Plus in der App.', price: '29,00 €', img: 'tarot-22' },
+    { id: 'gift', group: 'Karten', name: 'Geschenkset zur Verlobung', desc: 'Deck in Geschenkbox mit persönlicher Grußkarte, direkt an das Paar verschickt.', price: '39,00 €', img: 'tarot-29' },
+    { id: 'jga', group: 'Erweiterungen', name: 'Edition Junggesell:innenabschied', desc: '15 Karten mit Spielen & Challenges für den JGA.', price: '4,99 €', img: 'tarot-26', digital: true },
+    { id: 'ehe', group: 'Erweiterungen', name: 'Edition Das erste Ehejahr', desc: '12 Karten, eine Runde pro Monat nach der Hochzeit.', price: '4,99 €', img: 'tarot-18', digital: true },
+    { id: 'book', group: 'Erinnerung', name: 'Euer Hochzeitsbuch, gedruckt', desc: 'Alle Entscheidungen & gezogenen Karten als Hardcover, 48 Seiten.', price: '24,90 €', img: 'tarot-19' },
+    { id: 'pro', group: 'Für Profis', name: 'Planer Pro', desc: 'Für Wedding Planner: mehrere Paare, Workshop-Modus, eigenes Logo, Exporte.', price: '19 € / Monat', img: 'tarot-11', digital: true }
+  ];
   var pad = function (n) { return (n < 10 ? '0' : '') + n; };
   var tarotImg = function (i) { return IMG + 'tarot-' + pad(i + 1) + '.jpg'; };
   var catImg = function (i) { return IMG + 'kategorie-' + (i + 1) + '.jpg'; };
@@ -242,7 +309,7 @@
   var inDays = function (d) { var x = new Date(); x.setDate(x.getDate() + d); return x.toISOString().slice(0, 10); };
   var sample = function () {
     return {
-      sample: true, onboarded: true, names: 'Lea & Martin', date: inDays(143),
+      sample: true, onboarded: true, plus: false, owned: [], names: 'Lea & Martin', date: inDays(143),
       notes: [
         { id: 2, cat: 4, cards: [24, 21, 25], q: 'Welcher Song begleitet euren ersten Tanz?', text: 'Erster Tanz: „La Vie en Rose“ in der Live-Version.\nDanach direkt Party, ohne lange Pause. Die Band fragen, ob sie das Lied lernen kann.', at: Date.now() - 2 * 864e5 },
         { id: 1, cat: 0, cards: [1, 17, 3], q: 'Welches Ritual soll eure Trauung ganz persönlich machen?', text: 'Freie Trauung im Garten. Wir schreiben unser Eheversprechen selbst, Oma Hilde liest ein Gedicht.', at: Date.now() - 9 * 864e5 }
@@ -254,6 +321,8 @@
     return sample();
   };
   var state = load();
+  if (!state.owned) state.owned = [];
+  var isFree = function (cat) { return state.plus || FREE_CATS.indexOf(cat) !== -1; };
   var save = function () { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
   // ---------- Hilfen ----------
@@ -273,7 +342,7 @@
     current = tab;
     document.querySelectorAll('.tab').forEach(function (b) { b.toggleAttribute('aria-current', b.dataset.tab === tab); if (b.dataset.tab === tab) b.setAttribute('aria-current', 'page'); });
     main.scrollTop = 0;
-    ({ home: home, draw: draw, deck: deck, notes: notes, more: more })[tab]();
+    ({ home: home, draw: draw, deck: deck, notes: notes, more: more, shop: shop })[tab]();
   };
   document.querySelectorAll('.tab').forEach(function (b) { b.addEventListener('click', function () { go(b.dataset.tab); }); });
   var header = function (title, opts) {
@@ -303,12 +372,77 @@
     $('#sheet-close', bg).addEventListener('click', close);
     var play = $('#sheet-play', bg);
     if (play) play.addEventListener('click', function () { close(); startRound(i); });
+    if (play && !isFree(i)) play.textContent = 'Runde mit dieser Kategorie · Plus';
     $('#sheet-close', bg).focus();
+  };
+
+  // ---------- Bezahlschranke „Hochzeitstarot Plus“ ----------
+  var sheet = function (html) {
+    var bg = document.createElement('div'); bg.className = 'sheet-bg';
+    bg.innerHTML = '<div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>' + html + '</div>';
+    app.appendChild(bg);
+    bg.addEventListener('click', function (e) { if (e.target === bg) bg.remove(); });
+    return { el: bg, close: function () { bg.remove(); } };
+  };
+  var unlock = function (msg) { state.plus = true; save(); toast(msg || 'Plus ist freigeschaltet'); go(current === 'more' ? 'more' : current); };
+  var paywall = function (reason) {
+    var s = sheet(
+      '<span class="plus-badge">Plus</span>' +
+      '<h2>Alle Themen freischalten</h2>' +
+      '<p>' + esc(reason || 'Holt euch das komplette Hochzeitstarot in der App.') + '</p>' +
+      '<ul class="perks"><li>Alle 6 Kategorien mit jeweils 3 Fragen</li><li>Unbegrenzt Runden ziehen</li><li>Euer Hochzeitsbuch als PDF</li><li>Synchron auf beiden Handys (geplant)</li></ul>' +
+      '<button class="offer best" id="pw-deck"><span class="offer-top"><b>Deck + Plus</b><span>29,00 €</span></span><small>Die echten Karten nach Hause, Plus ist inklusive. Beliebteste Wahl.</small></button>' +
+      '<button class="offer" id="pw-buy"><span class="offer-top"><b>Nur die App</b><span>7,99 € einmalig</span></span><small>Kein Abo. Gilt für euch beide.</small></button>' +
+      '<div style="width:100%;display:grid;gap:6px;text-align:left"><span class="small muted">Ihr habt das Deck schon? Code aus der Schachtel:</span>' +
+      '<div class="code-row"><input type="text" id="pw-code" placeholder="HT-…" autocomplete="off" aria-label="Code"><button id="pw-redeem">Einlösen</button></div><span class="err" id="pw-err"></span></div>' +
+      '<p class="demo-note">Prototyp: Käufe sind simuliert. Demo-Code: ' + DECK_CODE + '</p>');
+    var $s = function (q) { return $(q, s.el); };
+    $s('#pw-buy').addEventListener('click', function () { s.close(); unlock('Danke! Plus ist freigeschaltet (Demo)'); });
+    $s('#pw-deck').addEventListener('click', function () { s.close(); buyProduct('deck'); });
+    $s('#pw-redeem').addEventListener('click', function () {
+      if ($s('#pw-code').value.trim().toUpperCase() === DECK_CODE) { s.close(); unlock('Code eingelöst, viel Spaß!'); }
+      else $s('#pw-err').textContent = 'Der Code passt nicht. Er steht auf der Innenseite der Schachtel.';
+    });
+  };
+  var buyProduct = function (id) {
+    var pr = PRODUCTS.filter(function (x) { return x.id === id; })[0];
+    var s = sheet(
+      '<img class="card-img" src="' + IMG + pr.img + '.jpg" alt="" style="width:120px">' +
+      '<h2>' + esc(pr.name) + '</h2><p>' + esc(pr.desc) + '</p>' +
+      (id === 'gift' ? '<label class="field" style="width:100%;text-align:left"><span>Grußkarte</span><textarea id="gift-msg">Herzlichen Glückwunsch zur Verlobung! Viel Freude beim Planen.</textarea></label>' : '') +
+      '<button class="btn terra" id="pay">' + (pr.digital ? 'Kaufen · ' : 'Zur Kasse · ') + esc(pr.price) + '</button>' +
+      '<p class="demo-note">' + (pr.digital ? 'Im Store über Apple / Google In-App-Kauf.' : 'Bezahlung über den Stripe-Checkout der Website, Druck & Versand automatisch.') + ' Hier nur simuliert.</p>');
+    $('#pay', s.el).addEventListener('click', function () {
+      s.close();
+      if (state.owned.indexOf(id) === -1) state.owned.push(id);
+      if (id === 'deck' || id === 'gift') state.plus = true;
+      save();
+      toast(pr.digital ? 'Freigeschaltet (Demo)' : 'Bestellt! Plus ist schon aktiv (Demo)');
+      go(current);
+    });
+  };
+  var partnerCard = function (cat) {
+    var pa = PARTNERS[cat];
+    return '<button class="panel partner" data-partner="' + cat + '"><span class="logo" style="background:' + pa.color + '">' + pa.initials + '</span><span>' +
+      '<span class="sponsored">' + (pa.own ? 'Von den Machern des Decks' : 'Partner · Gesponsert') + '</span><b>' + esc(pa.name) + '</b><p>' + esc(pa.what) + '</p></span></button>';
+  };
+  var bindPartners = function () {
+    main.querySelectorAll('[data-partner]').forEach(function (b) { b.addEventListener('click', function () { partnerSheet(+b.dataset.partner); }); });
+  };
+  var partnerSheet = function (cat) {
+    var pa = PARTNERS[cat];
+    var s = sheet(
+      '<span class="logo" style="width:64px;height:64px;border-radius:16px;display:grid;place-items:center;color:#fff;font:700 22px var(--display);background:' + pa.color + '">' + pa.initials + '</span>' +
+      '<h2>' + esc(pa.name) + '</h2><p>' + esc(pa.what) + '</p>' +
+      '<label class="field" style="width:100%;text-align:left"><span>Eure Anfrage</span><textarea id="lead-msg">Hallo! Wir heiraten am ' + esc(state.date ? fmtDate(state.date) : '…') + ' und haben gerade über „' + esc(CATS[cat].name) + '“ gesprochen. Habt ihr an dem Tag Zeit?</textarea></label>' +
+      '<button class="btn terra" id="lead-send">Unverbindlich anfragen</button>' +
+      '<p class="demo-note">' + (pa.own ? 'Direkte Anfrage an euer eigenes DJ-Geschäft.' : 'Partner zahlen pro Anfrage.') + ' Hier nur simuliert.</p>');
+    $('#lead-send', s.el).addEventListener('click', function () { s.close(); toast('Anfrage verschickt (Demo)'); });
   };
 
   // ---------- Start ----------
   var home = function () {
-    header('Hochzeitstarot', { right: (state.sample ? '<span class="chip">Beispiel</span>' : '') + moreBtn });
+    header('Hochzeitstarot', { right: (state.plus ? '<span class="chip plus">Plus</span>' : (state.sample ? '<span class="chip">Beispiel</span>' : '')) + moreBtn });
     bindMore();
     var d = daysLeft();
     var counts = CATS.map(function (_, i) { return state.notes.filter(function (n) { return n.cat === i; }).length; });
@@ -321,18 +455,21 @@
       '<button class="btn terra" id="start-round">Neue Runde ziehen</button>' +
       '<section class="panel"><div class="progress-head"><h2>Eure Themen</h2><span class="muted small">' + done + ' von 6 besprochen</span></div><div class="cats">' +
       CATS.map(function (c, i) {
-        return '<button class="cat-row" data-cat="' + i + '"><span>' + esc(c.name) + '</span><span class="muted small">' + (counts[i] ? counts[i] + ' Notiz' + (counts[i] > 1 ? 'en' : '') : 'offen') + '</span><span class="bar"><i style="width:' + Math.min(100, counts[i] * 50) + '%"></i></span></button>';
+        return '<button class="cat-row" data-cat="' + i + '"><span>' + esc(c.name) + '</span><span class="muted small">' + (!isFree(i) ? '🔒 Plus' : counts[i] ? counts[i] + ' Notiz' + (counts[i] > 1 ? 'en' : '') : 'offen') + '</span><span class="bar"><i style="width:' + Math.min(100, counts[i] * 50) + '%"></i></span></button>';
       }).join('') + '</div></section>' +
+      (state.plus ? '' : '<button class="upsell" id="upsell"><b>Alle 6 Themen freischalten</b><span class="go">Ansehen</span><p>Ihr nutzt die kostenlose Version mit 2 von 6 Kategorien. Mit dem Deck ist Plus inklusive.</p></button>') +
       (last ? '<section class="panel"><div class="label" style="margin-bottom:12px">Zuletzt festgehalten · ' + ago(last.at) + '</div>' +
         '<button class="last" id="last-note"><img class="card-img" src="' + catImg(last.cat) + '" alt=""><span><b style="font-family:var(--display);font-size:19px">' + esc(CATS[last.cat].name) + '</b><br><span class="muted small">' + esc(last.text.split('\n')[0]) + '</span></span></button></section>' : '') +
       '</div>';
     $('#start-round').addEventListener('click', function () { round = null; go('draw'); });
     main.querySelectorAll('.cat-row').forEach(function (b) { b.addEventListener('click', function () { startRound(+b.dataset.cat); }); });
+    var up = $('#upsell'); if (up) up.addEventListener('click', function () { paywall(); });
     if (last) $('#last-note').addEventListener('click', function () { go('notes'); });
   };
 
   // ---------- Ziehen ----------
   var startRound = function (cat) {
+    if (!isFree(cat)) return paywall('„' + CATS[cat].name + '“ gehört zu Hochzeitstarot Plus.');
     var pick = shuffle(30).slice(0, 3);
     round = { step: 2, cat: cat, cards: pick, open: [false, false, false], q: CATS[cat].q[Math.floor(Math.random() * 3)], text: '' };
     go('draw');
@@ -350,11 +487,14 @@
     main.innerHTML = '<div class="screen">' + stepsInd(1) +
       '<div><div class="label">Schritt 1</div><h2 style="font-size:28px;margin-top:4px">Welches Thema ist dran?</h2></div>' +
       '<div class="cat-grid">' + CATS.map(function (c, i) {
-        return '<button class="cat-tile" data-cat="' + i + '"><img class="card-img" src="' + catImg(i) + '" alt=""><span>' + esc(c.name) + '</span></button>';
+        return '<button class="cat-tile" data-cat="' + i + '"><span class="' + (isFree(i) ? '' : 'lock') + '" style="display:block"><img class="card-img" src="' + catImg(i) + '" alt=""></span><span>' + esc(c.name) + (isFree(i) ? '' : ' · Plus') + '</span></button>';
       }).join('') + '</div>' +
       '<button class="btn ghost" id="random-cat">Zufällig ziehen</button></div>';
     main.querySelectorAll('.cat-tile').forEach(function (b) { b.addEventListener('click', function () { startRound(+b.dataset.cat); }); });
-    $('#random-cat').addEventListener('click', function () { startRound(Math.floor(Math.random() * 6)); });
+    $('#random-cat').addEventListener('click', function () {
+      var pool = [0, 1, 2, 3, 4, 5].filter(isFree);
+      startRound(pool[Math.floor(Math.random() * pool.length)]);
+    });
   };
   var drawStep2 = function () {
     header('Neue Runde', { back: function () { round = null; go('draw'); } });
@@ -431,13 +571,27 @@
       $('#first').addEventListener('click', function () { round = null; go('draw'); });
       return;
     }
-    main.innerHTML = '<div class="screen">' + state.notes.map(function (n) {
+    var latest = state.notes[0];
+    main.innerHTML = '<div class="screen">' +
+      '<div class="label">Passend zu eurem letzten Thema</div>' + partnerCard(latest.cat) +
+      '<button class="btn ghost" id="book">Als Hochzeitsbuch ansehen' + (state.plus ? '' : ' · Plus') + '</button>' +
+      state.notes.map(function (n) {
       return '<article class="panel note"><div class="note-head"><b>' + esc(CATS[n.cat].name) + '</b><span class="muted small">' + ago(n.at) + '</span></div>' +
         '<div class="muted small" style="font-style:italic">„' + esc(n.q) + '“</div>' +
         '<div class="note-cards">' + n.cards.map(function (c) { return '<img class="card-img" src="' + tarotImg(c) + '" alt="' + esc(TAROT[c][0]) + '" title="' + esc(TAROT[c][0]) + '">'; }).join('') + '</div>' +
         '<p>' + esc(n.text) + '</p>' +
         '<button class="chip" data-del="' + n.id + '" style="justify-self:start">Löschen</button></article>';
     }).join('') + '</div>';
+    bindPartners();
+    $('#book').addEventListener('click', function () {
+      if (!state.plus) return paywall('Das Hochzeitsbuch sammelt alle eure Entscheidungen. Es gehört zu Plus.');
+      var s = sheet('<div class="book"><div class="label" style="text-align:center">Unser Hochzeitsbuch</div><h3>' + esc(state.names || 'Ihr zwei') + '</h3>' +
+        (state.date ? '<p class="muted small" style="text-align:center">' + esc(fmtDate(state.date)) + '</p>' : '') +
+        state.notes.slice(0, 3).map(function (n) { return '<div class="entry"><b>' + esc(CATS[n.cat].name) + '</b><span class="muted small">' + n.cards.map(function (c) { return esc(TAROT[c][0]); }).join(' · ') + '</span><p>' + esc(n.text) + '</p></div>'; }).join('') +
+        '</div><button class="btn" id="book-pdf">Als PDF teilen</button><button class="btn terra" id="book-print">Als Hardcover drucken · 24,90 €</button><p class="demo-note">Prototyp: Export und Druck sind simuliert.</p>');
+      $('#book-pdf', s.el).addEventListener('click', function () { s.close(); toast('PDF erstellt (Demo)'); });
+      $('#book-print', s.el).addEventListener('click', function () { s.close(); buyProduct('book'); });
+    });
     main.querySelectorAll('[data-del]').forEach(function (b) {
       b.addEventListener('click', function () {
         if (b.dataset.confirm) {
@@ -446,6 +600,29 @@
         } else { b.dataset.confirm = '1'; b.textContent = 'Wirklich löschen?'; b.style.color = 'var(--terra)'; }
       });
     });
+  };
+
+  // ---------- Shop ----------
+  var shop = function () {
+    header('Shop', { right: moreBtn }); bindMore();
+    var groups = [];
+    PRODUCTS.forEach(function (p) { if (groups.indexOf(p.group) === -1) groups.push(p.group); });
+    main.innerHTML = '<div class="screen">' +
+      (state.plus ? '<div class="panel" style="display:flex;gap:10px;align-items:center"><span class="plus-badge">Plus</span><span class="small">Alle Kategorien sind freigeschaltet.</span></div>'
+        : '<button class="upsell" id="upsell"><b>Hochzeitstarot Plus</b><span class="go">7,99 €</span><p>Alle 6 Kategorien, unbegrenzt Runden, Hochzeitsbuch. Mit dem Deck inklusive.</p></button>') +
+      groups.map(function (g) {
+        return '<h2 class="section-title">' + esc(g) + '</h2>' + PRODUCTS.filter(function (p) { return p.group === g; }).map(function (p) {
+          var owned = state.owned.indexOf(p.id) !== -1;
+          return '<div class="panel product"><span class="pic"><img class="card-img" src="' + IMG + p.img + '.jpg" alt=""></span><span><b>' + esc(p.name) + '</b><p>' + esc(p.desc) + '</p>' +
+            '<span class="price"><span>' + esc(p.price) + '</span><button class="buy' + (owned ? ' owned' : '') + '" data-buy="' + p.id + '">' + (owned ? (p.digital ? 'Aktiv' : 'Bestellt') : (p.digital ? 'Freischalten' : 'Kaufen')) + '</button></span></span></div>';
+        }).join('');
+      }).join('') +
+      '<h2 class="section-title">Dienstleister für euren Tag</h2>' +
+      [4, 0, 1, 2, 3, 5].map(partnerCard).join('') +
+      '<p class="demo-note">Prototyp: Käufe und Anfragen sind simuliert.</p></div>';
+    var up = $('#upsell'); if (up) up.addEventListener('click', function () { paywall(); });
+    main.querySelectorAll('[data-buy]').forEach(function (b) { b.addEventListener('click', function () { buyProduct(b.dataset.buy); }); });
+    bindPartners();
   };
 
   // ---------- Mehr ----------
@@ -458,17 +635,28 @@
       '<li>Zieht drei Tarotkarten und deckt sie nacheinander auf.</li>' +
       '<li>Lasst euch von Bild und Name inspirieren und sprecht über die Frage.</li>' +
       '<li>Haltet fest, was ihr entschieden habt. Und habt Spaß!</li></ol></section>' +
+      '<section class="panel" style="display:grid;gap:12px;justify-items:center;text-align:center"><h2 style="font-size:22px">Freunde einladen</h2>' +
+      '<p class="small muted">Verlobte Freunde bekommen 20 % aufs Deck, ihr einen Monat Plus geschenkt.</p><span class="ref" id="ref">' + esc(((state.names || 'Paar').normalize('NFD').replace(/[^A-Za-z& ]/g, '').split(/\s*&\s*|\s+/).filter(Boolean).slice(0, 2).join('-') || 'PAAR').toUpperCase() + '-20') + '</span>' +
+      '<button class="btn ghost" id="ref-copy">Code kopieren</button></section>' +
       '<section class="list">' +
+      '<button id="plus-row">Hochzeitstarot Plus<small>' + (state.plus ? 'aktiv' : 'Code einlösen oder kaufen') + '</small></button>' +
       '<button id="edit">Namen & Datum ändern<small>' + esc(state.names || '') + '</small></button>' +
       '<a href="index.html#bestellen" target="_blank" rel="noopener">Das Deck als Karten bestellen<small>29 €</small></a>' +
       '<button id="reset">' + (state.sample ? 'Beispieldaten entfernen' : 'Alles zurücksetzen') + '<small>Neu starten</small></button>' +
       '</section>' +
       '<p class="muted small" style="text-align:center">Prototyp · Eure Notizen bleiben nur auf diesem Gerät.</p></div>';
     $('#edit').addEventListener('click', onboarding);
+    $('#plus-row').addEventListener('click', function () { if (!state.plus) paywall(); else toast('Plus ist aktiv'); });
+    $('#ref-copy').addEventListener('click', function () {
+      var code = $('#ref').textContent;
+      var done = function () { toast('Code kopiert'); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents($('#ref')); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); toast('Code markiert, jetzt kopieren'); };
+      try { navigator.clipboard.writeText(code).then(done, fallback); } catch (e) { fallback(); }
+    });
     $('#reset').addEventListener('click', function () {
       var b = $('#reset');
       if (!b.dataset.confirm) { b.dataset.confirm = '1'; b.firstChild.textContent = 'Wirklich alles löschen?'; b.style.color = 'var(--terra)'; return; }
-      state = { onboarded: false, names: '', date: '', notes: [] }; save(); onboarding();
+      state = { onboarded: false, plus: false, owned: [], names: '', date: '', notes: [] }; save(); onboarding();
     });
   };
 
