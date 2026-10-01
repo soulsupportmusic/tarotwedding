@@ -7,7 +7,7 @@
   <meta name="description" content="Das Hochzeitstarot: 36 illustrierte Karten als Gesprächsanlass, Icebreaker und Entscheidungshelfer für eure Hochzeitsplanung. Jetzt bestellen." />
   <meta property="og:title" content="Das Hochzeitstarot" />
   <meta property="og:description" content="36 illustrierte Karten, die euch helfen, eure Hochzeit bewusst zu gestalten." />
-  <meta property="og:image" content="images/hero-card.jpg" />
+  <meta property="og:image" content="images/deck/tarot-22.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -162,9 +162,9 @@
       transform-origin: 50% 100%;
       transition: transform .5s cubic-bezier(.2,.8,.2,1);
     }
-    .hero-card:nth-child(1) { background-image: url('images/hero-card-2.jpg'); transform: translateX(-62px) rotate(-14deg); }
-    .hero-card:nth-child(2) { background-image: url('images/hero-card.jpg'); transform: translateY(-10px); z-index: 2; }
-    .hero-card:nth-child(3) { background-image: url('images/hero-card-3.jpg'); transform: translateX(62px) rotate(14deg); }
+    .hero-card:nth-child(1) { background-image: url('images/deck/tarot-22.jpg'); transform: translateX(-62px) rotate(-14deg); }
+    .hero-card:nth-child(2) { background-image: url('images/deck/tarot-08.jpg'); transform: translateY(-10px); z-index: 2; }
+    .hero-card:nth-child(3) { background-image: url('images/deck/tarot-29.jpg'); transform: translateX(62px) rotate(14deg); }
     .hero-cards:hover .hero-card:nth-child(1) { transform: translateX(-84px) rotate(-20deg); }
     .hero-cards:hover .hero-card:nth-child(2) { transform: translateY(-22px); }
     .hero-cards:hover .hero-card:nth-child(3) { transform: translateX(84px) rotate(20deg); }
@@ -223,53 +223,107 @@
     .step-title { font-size: 26px; margin-bottom: 12px; }
     .step-text { font-size: 17px; color: var(--muted); }
 
-    /* DECK */
+    /* DECK – Karten ziehen */
     .cards-section { background: #fff; }
     .deck {
       display: grid; grid-template-columns: auto auto; justify-content: center;
       column-gap: 56px; row-gap: 20px; align-items: end;
     }
-    .deck-label {
-      font-size: 28px; letter-spacing: -.5px; text-align: center;
-    }
+    .deck-label { font-size: 28px; letter-spacing: -.5px; text-align: center; }
     .deck-label small {
       display: block; margin-top: 4px;
       font: 400 15px 'Lora', serif; color: var(--muted); letter-spacing: 0;
     }
     .deck-group { display: flex; gap: 32px; justify-content: center; }
-    .deck-divider { width: 1px; background: rgba(0,0,0,.1); }
 
     .card-wrapper {
       width: var(--card-w); aspect-ratio: 7 / 12; flex: 0 0 auto;
-      cursor: pointer; perspective: 1200px;
+      cursor: pointer; perspective: 1200px; border-radius: 12px;
       transition: transform .4s ease;
-      border-radius: 14px;
     }
-    .card-wrapper:hover { transform: translateY(-12px); }
+    .card-wrapper:hover { transform: translateY(-10px); }
     .card-inner {
       position: relative; width: 100%; height: 100%;
-      transition: transform .9s cubic-bezier(.4,.2,.2,1);
+      transition: transform .8s cubic-bezier(.4,.2,.2,1);
       transform-style: preserve-3d;
     }
     .card-inner.is-flipped { transform: rotateY(180deg); }
-    @media (hover: hover) {
-      .card-wrapper:hover .card-inner { transform: rotateY(180deg); }
-      .card-wrapper:hover .card-inner.is-flipped { transform: rotateY(0deg); }
-    }
     .card-front, .card-back {
-      position: absolute; inset: 0; border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.06);
-      box-shadow: 0 12px 36px rgba(0,0,0,.14);
+      position: absolute; inset: 0; border-radius: 12px;
+      box-shadow: 0 12px 36px rgba(0,0,0,.16);
       background: var(--card) center / cover no-repeat;
       -webkit-backface-visibility: hidden; backface-visibility: hidden;
     }
-    .card-front { background-image: url('images/card-front.jpg'), linear-gradient(135deg, #f8f2ec, #e8ded4); }
-    .card-front.kategorie { background-image: url('images/category-front.jpg'), linear-gradient(135deg, #f8f2ec, #e8ded4); }
-    .card-back { transform: rotateY(180deg); background-image: linear-gradient(135deg, #f0e6d9, #e1d4c5); }
-    .card-back.kategorie { background-image: url('images/category-back.jpg'), linear-gradient(135deg, #f0e6d9, #e1d4c5); }
-    .card-back.c1 { background-image: url('images/c1.jpg'), linear-gradient(135deg, #f0e6d9, #e1d4c5); }
-    .card-back.c2 { background-image: url('images/c2.jpg'), linear-gradient(135deg, #f0e6d9, #e1d4c5); }
-    .card-back.c3 { background-image: url('images/c3.jpg'), linear-gradient(135deg, #f0e6d9, #e1d4c5); }
+    .card-front { background-image: url('images/deck/tarot-rueckseite.jpg'); }
+    .card-front.kategorie { background-image: url('images/deck/kategorie-rueckseite.jpg'); }
+    .card-back { transform: rotateY(180deg); }
+    @keyframes shuffle {
+      0%, 100% { transform: none; }
+      30% { transform: translateY(-14px) rotate(-3deg); }
+      60% { transform: translateY(4px) rotate(2deg); }
+    }
+    .card-wrapper.shuffling { animation: shuffle .5s ease; }
+
+    .draw-panel { margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+    .draw-prompt {
+      min-height: 3.2em; max-width: 640px;
+      font: italic 500 clamp(22px, 3vw, 30px)/1.35 'Cormorant Garamond', serif; color: var(--ink);
+      transition: opacity .4s;
+    }
+    .draw-prompt small {
+      display: block; margin-bottom: 6px;
+      font: 600 13px 'Lora', serif; font-style: normal; letter-spacing: 2px; text-transform: uppercase; color: var(--accent);
+    }
+    .draw-cards { font-size: 15px; color: var(--muted); min-height: 1.6em; }
+    .cta-button.draw-btn { cursor: pointer; }
+
+    /* VIDEO */
+    .video-wrap {
+      margin: clamp(56px, 8vw, 88px) auto 0; max-width: 900px;
+      display: grid; gap: 16px; text-align: center;
+    }
+    .video-wrap video {
+      width: 100%; aspect-ratio: 16 / 9; display: block; border-radius: var(--radius);
+      box-shadow: var(--shadow-hover); background: var(--bg2);
+    }
+    .video-caption { font-size: 15px; color: var(--muted); }
+
+    /* GALERIE */
+    .gallery { background: var(--bg); }
+    .gallery-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .gallery-tab {
+      font: 500 15px 'Lora', serif; padding: 10px 22px; border-radius: 999px; cursor: pointer;
+      background: transparent; color: var(--ink); border: 1.5px solid rgba(0,0,0,.18); transition: all .25s;
+    }
+    .gallery-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 22px;
+    }
+    .gallery-item {
+      padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 10px;
+      transition: transform .3s ease;
+    }
+    .gallery-item:hover { transform: translateY(-6px) rotate(-1deg); }
+    .gallery-item img {
+      display: block; width: 100%; aspect-ratio: 7 / 12; object-fit: cover; border-radius: 10px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.12); background: var(--card);
+    }
+    .lightbox {
+      border: 0; padding: 0; background: transparent; max-width: none; max-height: none;
+      width: 100%; height: 100%; display: none; align-items: center; justify-content: center;
+    }
+    .lightbox[open] { display: flex; }
+    .lightbox::backdrop { background: rgba(20,16,12,.82); }
+    .lightbox img {
+      height: min(84vh, 760px); max-width: 90vw; aspect-ratio: 7 / 12; object-fit: contain;
+      border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    }
+    .lb-btn {
+      position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0; cursor: pointer;
+      width: 52px; height: 52px; border-radius: 50%; font-size: 26px; line-height: 1;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.25); }
+    .lb-prev { left: 3vw; } .lb-next { right: 3vw; } .lb-close { top: 3vh; right: 3vw; }
 
     /* TESTIMONIALS */
     .testimonials { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%); }
@@ -303,8 +357,9 @@
     .about-text + .about-text { margin-top: 16px; }
     .about-signature { margin-top: 28px; font: italic 600 26px 'Cormorant Garamond', serif; color: var(--accent); }
     .about-image {
-      aspect-ratio: 4 / 3; border-radius: var(--radius); box-shadow: var(--shadow);
-      background: #eee url('images/founders-placeholder.jpg') center / cover no-repeat;
+      aspect-ratio: 4 / 5; max-width: 480px; width: 100%; justify-self: center;
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      background: #eee url('images/gruender.jpg') 50% 12% / cover no-repeat;
       transition: box-shadow .4s, transform .4s;
     }
     .about-image:hover { box-shadow: var(--shadow-hover); transform: translateY(-6px); }
@@ -436,7 +491,8 @@
       <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links"><span></span></button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#wie-es-funktioniert">So geht's</a></li>
-        <li><a href="#karten">Das Deck</a></li>
+        <li><a href="#karten">Ausprobieren</a></li>
+        <li><a href="#galerie">Alle Karten</a></li>
         <li><a href="#stimmen">Stimmen</a></li>
         <li><a href="#ueber-uns">Über uns</a></li>
         <li><a href="#bestellen" class="nav-cta">Bestellen</a></li>
@@ -506,8 +562,8 @@
     <section class="cards-section" id="karten">
       <div class="container">
         <div class="section-header reveal">
-          <h2 class="section-title">Ein Blick ins Deck</h2>
-          <p class="section-subtitle">Fahrt mit der Maus über eine Karte oder tippt darauf, um sie umzudrehen.</p>
+          <h2 class="section-title">Zieht eure erste Runde</h2>
+          <p class="section-subtitle">Eine Kategorie gibt das Thema vor, drei Tarotkarten liefern die Impulse. Probiert es direkt hier aus.</p>
         </div>
 
         <div class="deck reveal">
@@ -518,32 +574,54 @@
             <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false" aria-label="Kategoriekarte umdrehen">
               <div class="card-inner">
                 <div class="card-front kategorie"></div>
-                <div class="card-back kategorie"></div>
+                <div class="card-back" data-slot="cat"></div>
               </div>
             </div>
           </div>
           <div class="deck-group group-tarot">
             <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false" aria-label="Tarotkarte 1 umdrehen">
-              <div class="card-inner">
-                <div class="card-front"></div>
-                <div class="card-back c1"></div>
-              </div>
+              <div class="card-inner"><div class="card-front"></div><div class="card-back" data-slot="t0"></div></div>
             </div>
             <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false" aria-label="Tarotkarte 2 umdrehen">
-              <div class="card-inner">
-                <div class="card-front"></div>
-                <div class="card-back c2"></div>
-              </div>
+              <div class="card-inner"><div class="card-front"></div><div class="card-back" data-slot="t1"></div></div>
             </div>
             <div class="card-wrapper" tabindex="0" role="button" aria-pressed="false" aria-label="Tarotkarte 3 umdrehen">
-              <div class="card-inner">
-                <div class="card-front"></div>
-                <div class="card-back c3"></div>
-              </div>
+              <div class="card-inner"><div class="card-front"></div><div class="card-back" data-slot="t2"></div></div>
             </div>
           </div>
         </div>
+
+        <div class="draw-panel">
+          <p class="draw-prompt" id="draw-prompt" aria-live="polite"><small>Bereit?</small>Zieht eure Karten und schaut, welches Thema heute dran ist.</p>
+          <p class="draw-cards" id="draw-cards"></p>
+          <button type="button" class="cta-button draw-btn" id="draw-btn">Karten ziehen</button>
+        </div>
+
+        <div class="video-wrap reveal">
+          <video src="media/spielrunde.mp4" poster="media/spielrunde-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Animation: eine Spielrunde mit dem Hochzeitstarot"></video>
+          <p class="video-caption">So läuft eine Runde: Kategorie ziehen, drei Impulse aufdecken, gemeinsam entscheiden.</p>
+        </div>
       </div>
+    </section>
+
+    <section class="gallery" id="galerie">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">Alle 36 Karten</h2>
+          <p class="section-subtitle">30 handillustrierte Tarotkarten und 6 Kategoriekarten. Klickt auf eine Karte, um sie groß zu sehen.</p>
+        </div>
+        <div class="gallery-tabs" role="tablist" aria-label="Kartentyp">
+          <button type="button" class="gallery-tab" role="tab" aria-selected="true" data-set="tarot">Tarotkarten (30)</button>
+          <button type="button" class="gallery-tab" role="tab" aria-selected="false" data-set="kategorie">Kategoriekarten (6)</button>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </div>
+      <dialog class="lightbox" id="lightbox" aria-label="Kartenansicht">
+        <img id="lb-img" alt="" />
+        <button type="button" class="lb-btn lb-prev" id="lb-prev" aria-label="Vorherige Karte">‹</button>
+        <button type="button" class="lb-btn lb-next" id="lb-next" aria-label="Nächste Karte">›</button>
+        <button type="button" class="lb-btn lb-close" id="lb-close" aria-label="Schließen">×</button>
+      </dialog>
     </section>
 
     <section class="testimonials" id="stimmen">
@@ -658,17 +736,123 @@
         a.addEventListener('click', function () { setOpen(false); });
       });
 
+      // Kartendaten
+      var TAROT = ['Der Impuls','Der neue Weg','Der frische Blick','Die weise Stimme','Das Unperfekte','Der Trend',
+        'Das Farbgefühl','Der helle Funken','Die Technik','Der Teamgeist','Die Planerin','Der leitende Stern',
+        'Die Dankbarkeit','Der Sonnenschein','Die helfende Hand','Der Moment','Der offene Himmel','Die Gemeinsamkeit',
+        'Die Erinnerung','Die offene Tür','Die Details','Der erste Tanz','Der Geschmack','Die geheime Zutat',
+        'Der Soundtrack','Das Lachen','Der besondere Gast','Das Rampenlicht','Der Toast','Der familiäre Kreis'];
+      var KATEGORIEN = [
+        ['Zeremonie & Rituale', 'Welches Ritual soll eure Trauung ganz persönlich machen?'],
+        ['Gäste & Erinnerungen', 'Woran sollen sich eure Gäste in zehn Jahren noch erinnern?'],
+        ['Ort & Umgebung', 'An welchem Ort fühlt ihr euch beide sofort zu Hause?'],
+        ['Dekoration & Styling', 'Welche drei Worte beschreiben den Look eures Tages?'],
+        ['Musik & Atmosphäre', 'Welcher Song begleitet euren ersten Tanz?'],
+        ['Essen & Getränke', 'Welches Gericht erzählt eure gemeinsame Geschichte?']
+      ];
+      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+      var tarotSrc = function (i) { return 'images/deck/tarot-' + pad(i + 1) + '.jpg'; };
+      var katSrc = function (i) { return 'images/deck/kategorie-' + (i + 1) + '.jpg'; };
+
       // Karten per Klick / Tastatur umdrehen
-      document.querySelectorAll('.card-wrapper').forEach(function (wrapper) {
-        var inner = wrapper.querySelector('.card-inner');
-        var flip = function () {
-          var flipped = inner.classList.toggle('is-flipped');
-          wrapper.setAttribute('aria-pressed', String(flipped));
-        };
+      var wrappers = Array.prototype.slice.call(document.querySelectorAll('.card-wrapper'));
+      var setFlipped = function (wrapper, flipped) {
+        wrapper.querySelector('.card-inner').classList.toggle('is-flipped', flipped);
+        wrapper.setAttribute('aria-pressed', String(flipped));
+      };
+      wrappers.forEach(function (wrapper) {
+        var flip = function () { setFlipped(wrapper, !wrapper.querySelector('.card-inner').classList.contains('is-flipped')); };
         wrapper.addEventListener('click', flip);
         wrapper.addEventListener('keydown', function (e) {
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
         });
+      });
+
+      // Zufällige Runde ziehen
+      var pick = function (n, k) {
+        var pool = []; for (var i = 0; i < n; i++) pool.push(i);
+        for (var j = pool.length - 1; j > 0; j--) { var r = Math.floor(Math.random() * (j + 1)); var t = pool[j]; pool[j] = pool[r]; pool[r] = t; }
+        return pool.slice(0, k);
+      };
+      var slot = function (name) { return document.querySelector('[data-slot="' + name + '"]'); };
+      var setRound = function (cat, tarot) {
+        slot('cat').style.backgroundImage = 'url(' + katSrc(cat) + ')';
+        tarot.forEach(function (t, i) { slot('t' + i).style.backgroundImage = 'url(' + tarotSrc(t) + ')'; });
+        wrappers[0].setAttribute('aria-label', 'Kategoriekarte: ' + KATEGORIEN[cat][0]);
+        tarot.forEach(function (t, i) { wrappers[i + 1].setAttribute('aria-label', 'Tarotkarte: ' + TAROT[t]); });
+      };
+      var prompt = document.getElementById('draw-prompt');
+      var drawn = document.getElementById('draw-cards');
+      var drawBtn = document.getElementById('draw-btn');
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timers = [];
+      var draw = function () {
+        timers.forEach(clearTimeout); timers = [];
+        var cat = pick(6, 1)[0], tarot = pick(30, 3);
+        var anyFlipped = wrappers.some(function (w) { return w.getAttribute('aria-pressed') === 'true'; });
+        wrappers.forEach(function (w) { setFlipped(w, false); });
+        prompt.style.opacity = 0;
+        drawn.textContent = '';
+        var later = function (fn, ms) { timers.push(setTimeout(fn, reduced ? 0 : ms)); };
+        later(function () {
+          setRound(cat, tarot);
+          wrappers.forEach(function (w) { w.classList.remove('shuffling'); void w.offsetWidth; w.classList.add('shuffling'); });
+        }, anyFlipped ? 850 : 0);
+        var base = anyFlipped ? 1400 : 550;
+        wrappers.forEach(function (w, i) { later(function () { setFlipped(w, true); }, base + i * 380); });
+        later(function () {
+          prompt.innerHTML = '<small>' + KATEGORIEN[cat][0].replace('&', '&amp;') + ' · Beispielfrage</small>' + KATEGORIEN[cat][1];
+          prompt.style.opacity = 1;
+          drawn.textContent = 'Eure Impulse: ' + tarot.map(function (t) { return TAROT[t]; }).join(' · ');
+          drawBtn.textContent = 'Neue Runde ziehen';
+        }, base + 3 * 380 + 600);
+      };
+      drawBtn.addEventListener('click', draw);
+      setRound(4, [24, 21, 25]);
+
+      // Galerie + Großansicht
+      var grid = document.getElementById('gallery-grid');
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var current = [], idx = 0;
+      var sets = {
+        tarot: TAROT.map(function (n, i) { return { src: tarotSrc(i), name: (i + 1) + ' · ' + n }; }),
+        kategorie: KATEGORIEN.map(function (k, i) { return { src: katSrc(i), name: 'Kategorie: ' + k[0] }; })
+      };
+      var showLb = function (i) {
+        idx = (i + current.length) % current.length;
+        lbImg.src = current[idx].src; lbImg.alt = current[idx].name;
+      };
+      var renderSet = function (key) {
+        current = sets[key];
+        grid.innerHTML = '';
+        current.forEach(function (c, i) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'gallery-item'; b.setAttribute('aria-label', c.name + ' groß anzeigen');
+          var img = document.createElement('img'); img.src = c.src; img.alt = c.name; img.loading = 'lazy'; img.decoding = 'async';
+          b.appendChild(img);
+          b.addEventListener('click', function () {
+            showLb(i);
+            if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+          });
+          grid.appendChild(b);
+        });
+      };
+      document.querySelectorAll('.gallery-tab').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          document.querySelectorAll('.gallery-tab').forEach(function (t) { t.setAttribute('aria-selected', String(t === tab)); });
+          renderSet(tab.dataset.set);
+        });
+      });
+      renderSet('tarot');
+      var closeLb = function () { if (lb.close) lb.close(); else lb.removeAttribute('open'); };
+      document.getElementById('lb-prev').addEventListener('click', function () { showLb(idx - 1); });
+      document.getElementById('lb-next').addEventListener('click', function () { showLb(idx + 1); });
+      document.getElementById('lb-close').addEventListener('click', closeLb);
+      lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+      lb.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') showLb(idx - 1);
+        if (e.key === 'ArrowRight') showLb(idx + 1);
       });
 
       // Sanftes Einblenden beim Scrollen

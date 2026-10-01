@@ -31,7 +31,7 @@ export default async (req) => {
           product_data: {
             name: 'Das Hochzeitstarot',
             description: '6 Kategoriekarten, 30 handillustrierte Tarotkarten, Deutungen & hochwertige Schachtel',
-            images: [`${site}/images/hero-card.jpg`],
+            images: [`${site}/images/deck/tarot-22.jpg`],
           },
         },
       }],
