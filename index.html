@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Das Hochzeitstarot – Eure Hochzeit bewusst gestalten</title>
-  <meta name="description" content="Das Hochzeitstarot: 36 illustrierte Karten als Gesprächsanlass, Icebreaker und Entscheidungshelfer für eure Hochzeitsplanung. Jetzt vorbestellen." />
+  <meta name="description" content="Das Hochzeitstarot: 36 illustrierte Karten als Gesprächsanlass, Icebreaker und Entscheidungshelfer für eure Hochzeitsplanung. Jetzt bestellen." />
   <meta property="og:title" content="Das Hochzeitstarot" />
   <meta property="og:description" content="36 illustrierte Karten, die euch helfen, eure Hochzeit bewusst zu gestalten." />
   <meta property="og:image" content="images/hero-card.jpg" />
@@ -335,6 +335,24 @@
     .features { list-style: none; text-align: left; max-width: 420px; margin: 0 auto 44px; }
     .features li { display: flex; gap: 14px; align-items: baseline; margin-bottom: 16px; font-size: 18px; color: rgba(255,255,255,.9); }
     .features li::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 20px; }
+    .buy-form { display: flex; gap: 16px; justify-content: center; align-items: stretch; flex-wrap: wrap; }
+    .qty {
+      display: flex; align-items: center; border: 2px solid rgba(255,255,255,.35); border-radius: 10px; overflow: hidden;
+    }
+    .qty-btn {
+      width: 48px; height: 100%; min-height: 56px; background: none; border: 0; color: #fff;
+      font-size: 22px; cursor: pointer; transition: background .2s;
+    }
+    .qty-btn:hover { background: rgba(255,255,255,.1); }
+    .qty input {
+      width: 44px; background: none; border: 0; color: #fff; text-align: center;
+      font: 600 18px 'Lora', serif; -moz-appearance: textfield; appearance: textfield;
+    }
+    .qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .buy-form .cta-button { cursor: pointer; }
+    .buy-form .cta-button[disabled] { opacity: .7; cursor: progress; transform: none; }
+    .buy-error { margin-top: 20px; color: #ffb4a8; font-size: 15px; }
+    .pay-methods { margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.6); }
     .pricing-note { font-size: 14px; color: rgba(255,255,255,.6); margin-top: 28px; }
     .pricing-note a { color: rgba(255,255,255,.85); }
 
@@ -421,7 +439,7 @@
         <li><a href="#karten">Das Deck</a></li>
         <li><a href="#stimmen">Stimmen</a></li>
         <li><a href="#ueber-uns">Über uns</a></li>
-        <li><a href="#bestellen" class="nav-cta">Vorbestellen</a></li>
+        <li><a href="#bestellen" class="nav-cta">Bestellen</a></li>
       </ul>
     </div>
   </nav>
@@ -438,7 +456,7 @@
         <h1>Das Hochzeitstarot</h1>
         <p class="hero-subtitle">Einzigartige Karten, die euch helfen, eure Hochzeit bewusst zu gestalten – als Gesprächsanlass, Icebreaker und Entscheidungshelfer.</p>
         <div class="cta-buttons">
-          <a href="#bestellen" class="cta-button">Jetzt vorbestellen</a>
+          <a href="#bestellen" class="cta-button">Jetzt bestellen</a>
           <a href="#wie-es-funktioniert" class="cta-button secondary">So funktioniert's</a>
         </div>
       </div>
@@ -577,7 +595,7 @@
         <p class="pricing-subtitle reveal">Holt euch Das Hochzeitstarot – als Set für zu Hause oder als Tool für euren ersten Planungs-Workshop.</p>
 
         <div class="price-box reveal">
-          <span class="price-badge">Vorbestellung</span>
+          <span class="price-badge">Direkt bestellen</span>
           <div class="price">29&nbsp;€</div>
           <div class="price-detail">Versandkostenfrei innerhalb Deutschlands</div>
           <ul class="features">
@@ -586,10 +604,19 @@
             <li>Interpretationen und Deutungen</li>
             <li>Hochwertige Schachtel</li>
           </ul>
-          <a href="mailto:soulmusic.bielefeld@gmail.com?subject=Vorbestellung%20Das%20Hochzeitstarot" class="cta-button inverse">Jetzt vorbestellen</a>
+          <form class="buy-form" id="buy-form">
+            <div class="qty" role="group" aria-label="Anzahl">
+              <button type="button" class="qty-btn" data-step="-1" aria-label="Eins weniger">−</button>
+              <input type="number" id="qty" name="quantity" value="1" min="1" max="5" inputmode="numeric" aria-label="Anzahl Decks" />
+              <button type="button" class="qty-btn" data-step="1" aria-label="Eins mehr">+</button>
+            </div>
+            <button type="submit" class="cta-button inverse" id="buy-button">Jetzt kaufen</button>
+          </form>
+          <p class="buy-error" id="buy-error" role="alert" hidden></p>
+          <p class="pay-methods">Sichere Zahlung per Karte, PayPal, Klarna, SEPA, Apple Pay &amp; Google Pay</p>
         </div>
 
-        <p class="pricing-note">Fragen? Schreibt uns an <a href="mailto:soulmusic.bielefeld@gmail.com">soulmusic.bielefeld@gmail.com</a></p>
+        <p class="pricing-note">Gedruckt und verschickt innerhalb weniger Werktage · <a href="agb.html">AGB</a> · <a href="widerruf.html">Widerruf</a><br>Fragen? Schreibt uns an <a href="mailto:soulmusic.bielefeld@gmail.com">soulmusic.bielefeld@gmail.com</a></p>
       </div>
     </section>
   </main>
@@ -598,8 +625,10 @@
     <div class="container">
       <div class="footer-links">
         <a href="mailto:soulmusic.bielefeld@gmail.com">Kontakt</a>
-        <a href="#">Impressum</a>
-        <a href="#">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="widerruf.html">Widerruf</a>
       </div>
       <div class="footer-bottom">
         <span>&copy; <span id="year">2026</span> Das Hochzeitstarot. Alle Rechte vorbehalten.</span>
@@ -654,6 +683,43 @@
       } else {
         items.forEach(function (el) { el.classList.add('visible'); });
       }
+
+      // Kauf: Stripe-Checkout über /api/checkout starten
+      var form = document.getElementById('buy-form');
+      var qty = document.getElementById('qty');
+      var buyBtn = document.getElementById('buy-button');
+      var buyError = document.getElementById('buy-error');
+      var clampQty = function (v) { return Math.min(5, Math.max(1, parseInt(v, 10) || 1)); };
+      form.querySelectorAll('.qty-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { qty.value = clampQty(+qty.value + +btn.dataset.step); });
+      });
+      qty.addEventListener('change', function () { qty.value = clampQty(qty.value); });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        buyError.hidden = true;
+        buyBtn.disabled = true;
+        buyBtn.textContent = 'Einen Moment …';
+        fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ quantity: clampQty(qty.value) })
+        })
+          .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+          .then(function (r) {
+            if (!r.ok || !r.data.url) throw new Error(r.data.error || 'Unbekannter Fehler');
+            window.location.href = r.data.url;
+          })
+          .catch(function (err) {
+            buyError.textContent = (err && err.message && err.message !== 'Failed to fetch')
+              ? err.message
+              : 'Der Bezahlvorgang konnte nicht gestartet werden. Bitte versucht es erneut oder schreibt uns.';
+            buyError.hidden = false;
+            buyBtn.disabled = false;
+            buyBtn.textContent = 'Jetzt kaufen';
+          });
+      });
+      // Zurück-Navigation aus dem Checkout: Button wieder aktivieren
+      window.addEventListener('pageshow', function () { buyBtn.disabled = false; buyBtn.textContent = 'Jetzt kaufen'; });
 
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
